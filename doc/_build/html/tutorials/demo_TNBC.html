@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TNBC sample &mdash; scATAnno: Automated Cell Type Annotation for single-cell ATAC-seq Data  documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/nbsphinx-code-cells.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="BCC Multiple Samples" href="demo_BCC_multiple_samples.html" />
+    <link rel="prev" title="PBMC10K Multiome" href="demo_PBMC10K_Multiome.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> scATAnno: Automated Cell Type Annotation for single-cell ATAC-seq Data
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Overview</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../overview.html">About scATAnno</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install.html">Installation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference Atlases</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../reference_details.html">Reference Atlas</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Workflow Details</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../workflow_details.html">Prepare Reference Atlas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../workflow_details2.html">Pipeline Overview</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Algorithms</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../algorithm.html">Dimension reduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../algorithm.html#cell-type-assignment">Cell-type Assignment</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../tutorials.html">Case Study Datasets</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Tutorials</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="demo_PBMC10K_Multiome.html">PBMC10K Multiome</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">TNBC sample</a></li>
+<li class="toctree-l2"><a class="reference internal" href="demo_BCC_multiple_samples.html">BCC Multiple Samples</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">scATAnno: Automated Cell Type Annotation for single-cell ATAC-seq Data</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">Tutorials</a> &raquo;</li>
+      <li>TNBC sample</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/tutorials/demo_TNBC.ipynb.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">scanpy</span> <span class="k">as</span> <span class="nn">sc</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">scipy.sparse</span> <span class="kn">import</span> <span class="n">csr_matrix</span>
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">sparse</span>
+<span class="kn">import</span> <span class="nn">scipy.io</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">anndata</span> <span class="k">as</span> <span class="nn">ad</span> <span class="c1"># Anndata version must &gt; 0.8</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">set_theme</span><span class="p">(</span><span class="n">style</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">)</span>
+
+<span class="kn">from</span> <span class="nn">scATAnno.SnapATAC2_spectral</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">scATAnno.SnapATAC2_tools</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">scATAnno.SnapATAC2_utils</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">scATAnno</span> <span class="kn">import</span> <span class="n">scATAnno_preprocess</span>
+<span class="kn">from</span> <span class="nn">scATAnno</span> <span class="kn">import</span> <span class="n">scATAnno_assignment</span>
+<span class="kn">from</span> <span class="nn">scATAnno</span> <span class="kn">import</span> <span class="n">scATAnno_integration</span>
+<span class="kn">from</span> <span class="nn">scATAnno</span> <span class="kn">import</span> <span class="n">scATAnno_plotting</span>
+
+<span class="kn">import</span> <span class="nn">warnings</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">simplefilter</span><span class="p">(</span><span class="n">action</span><span class="o">=</span><span class="s1">&#39;ignore&#39;</span><span class="p">,</span> <span class="n">category</span><span class="o">=</span><span class="ne">FutureWarning</span><span class="p">)</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">simplefilter</span><span class="p">(</span><span class="n">action</span><span class="o">=</span><span class="s1">&#39;ignore&#39;</span><span class="p">,</span> <span class="n">category</span><span class="o">=</span><span class="ne">DeprecationWarning</span><span class="p">)</span>
+
+<span class="n">default_28</span> <span class="o">=</span> <span class="n">scATAnno_plotting</span><span class="o">.</span><span class="n">get_palettes</span><span class="p">(</span><span class="s2">&quot;default28&quot;</span><span class="p">)</span>
+<span class="n">default_102</span> <span class="o">=</span> <span class="n">scATAnno_plotting</span><span class="o">.</span><span class="n">get_palettes</span><span class="p">(</span><span class="s2">&quot;default102&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<section id="TNBC-sample">
+<h1>TNBC sample<a class="headerlink" href="#TNBC-sample" title="Permalink to this heading"></a></h1>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="s2">&quot;/Users/jiang/Dropbox (Partners HealthCare)/Software/ATAC_Annotation_V3/ATAC_Annotation_Package&quot;</span><span class="p">)</span>
+
+<span class="n">output_name</span> <span class="o">=</span> <span class="s2">&quot;TNBC&quot;</span>
+<span class="n">out_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s2">&quot;case_study&quot;</span><span class="p">,</span> <span class="n">output_name</span><span class="p">)</span> <span class="c1">### change</span>
+<br/><br/></pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><br/><span></span><span class="n">reference_data_path</span> <span class="o">=</span> <span class="s2">&quot;data/Reference/BCC_TIL_reference_atlas_final.h5ad&quot;</span>
+<span class="n">reference_data</span> <span class="o">=</span> <span class="n">scATAnno_preprocess</span><span class="o">.</span><span class="n">load_reference_data</span><span class="p">(</span><span class="n">reference_data_path</span><span class="p">)</span>
+<span class="n">query_data</span> <span class="o">=</span> <span class="n">scATAnno_preprocess</span><span class="o">.</span><span class="n">import_query_data</span><span class="p">(</span><span class="n">path</span> <span class="o">=</span> <span class="s1">&#39;data/TNBC_Pre_P012_t/&#39;</span><span class="p">,</span>
+                                    <span class="n">mtx_file</span> <span class="o">=</span> <span class="s1">&#39;matrix.mtx.gz&#39;</span><span class="p">,</span>
+                                    <span class="n">cells_file</span> <span class="o">=</span> <span class="s1">&#39;barcodes.tsv.gz&#39;</span><span class="p">,</span>
+                                    <span class="n">features_file</span> <span class="o">=</span> <span class="s1">&#39;features.tsv.gz&#39;</span><span class="p">,</span>
+                                    <span class="n">variable_prefix</span> <span class="o">=</span> <span class="s2">&quot;TNBC_Pre_P012_t&quot;</span><span class="p">,</span>
+                                    <span class="n">celltype_col</span> <span class="o">=</span> <span class="s2">&quot;celltypes&quot;</span><span class="p">,</span>
+                                    <span class="n">add_metrics</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">reference_data</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">query_data</span><span class="p">)</span>
+<span class="k">assert</span> <span class="n">reference_data</span><span class="o">.</span><span class="n">var</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">query_data</span><span class="o">.</span><span class="n">var</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+AnnData object with n_obs × n_vars = 22008 × 344492
+    obs: &#39;celltypes&#39;, &#39;tissue&#39;, &#39;dataset&#39;
+    var: &#39;selected&#39;
+    uns: &#39;Group_colors&#39;, &#39;celltypes_colors&#39;, &#39;spectral_eigenvalue&#39;, &#39;true_label_colors&#39;
+    obsm: &#39;X_spectral&#39;, &#39;X_umap&#39;
+View of AnnData object with n_obs × n_vars = 9935 × 344492
+    obs: &#39;celltypes&#39;, &#39;tissue&#39;, &#39;dataset&#39;
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Integrate reference and query data</span>
+<span class="n">integrated_adata</span> <span class="o">=</span> <span class="n">scATAnno_assignment</span><span class="o">.</span><span class="n">scATAnno_integrate</span><span class="p">(</span><span class="n">reference_data</span><span class="p">,</span> <span class="n">query_data</span><span class="p">,</span> <span class="n">variable_prefix</span> <span class="o">=</span> <span class="s2">&quot;TNBC_Pre_P012_t&quot;</span><span class="p">,</span> <span class="n">sample_size</span> <span class="o">=</span> <span class="mi">25000</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+/Users/jiang/Dropbox (Partners HealthCare)/Software/ATAC_Annotation_V3/ATAC_Annotation_Package/scATAnno/SnapATAC2_spectral.py:159: ImplicitModificationWarning: Trying to modify attribute `.var` of view, initializing view as actual.
+  adata.var[&#34;selected&#34;] = selected_features
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Compute similarity matrix
+Normalization
+Perform decomposition
+Perform Nystrom extension
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+100%|████████████████████████████████████████████| 2/2 [04:20&lt;00:00, 130.26s/it]
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Apply harmony to remove batch effects</span>
+<span class="n">integrated_adata_harmony</span> <span class="o">=</span> <span class="n">scATAnno_assignment</span><span class="o">.</span><span class="n">scATAnno_harmony</span><span class="p">(</span><span class="n">integrated_adata</span><span class="p">,</span> <span class="n">batch_col</span> <span class="o">=</span> <span class="s2">&quot;dataset&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+2023-05-25 17:42:14,786 - harmonypy - INFO - Iteration 1 of 20
+2023-05-25 17:42:21,018 - harmonypy - INFO - Iteration 2 of 20
+2023-05-25 17:42:26,180 - harmonypy - INFO - Converged after 2 iterations
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot UMAP using spectral embeddings</span>
+<span class="n">integrated_adata</span> <span class="o">=</span> <span class="n">scATAnno_assignment</span><span class="o">.</span><span class="n">scATAnno_umap</span><span class="p">(</span><span class="n">integrated_adata_harmony</span><span class="p">,</span> <span class="n">out_dir</span><span class="p">,</span> <span class="n">use_rep</span> <span class="o">=</span> <span class="s2">&quot;X_spectral_harmony&quot;</span><span class="p">,</span> <span class="n">save</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+<span class="n">integrated_adata</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+AnnData object with n_obs × n_vars = 31943 × 344492
+    obs: &#39;celltypes&#39;, &#39;tissue&#39;, &#39;dataset&#39;
+    obsm: &#39;X_spectral&#39;, &#39;X_spectral_harmony&#39;, &#39;X_umap&#39;
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">scATAnno_plotting</span><span class="o">.</span><span class="n">defaultPlotting_umap</span><span class="p">()</span>
+<span class="n">sc</span><span class="o">.</span><span class="n">pl</span><span class="o">.</span><span class="n">umap</span><span class="p">(</span><span class="n">integrated_adata</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;dataset&quot;</span><span class="p">,</span> <span class="n">palette</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;#228833&#39;</span><span class="p">,</span> <span class="s1">&#39;#cccccc&#39;</span><span class="p">],</span> <span class="n">show</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">title</span> <span class="o">=</span> <span class="s2">&quot;Integration&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+/opt/anaconda3/lib/python3.9/site-packages/scanpy/plotting/_tools/scatterplots.py:392: UserWarning: No data for colormapping provided via &#39;c&#39;. Parameters &#39;cmap&#39; will be ignored
+  cax = scatter(
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/tutorials_demo_TNBC_8_1.png" src="../_images/tutorials_demo_TNBC_8_1.png" />
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">integrated_adata</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="n">read_h5ad</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">out_dir</span><span class="p">,</span> <span class="s2">&quot;1.Merged_query_reference.h5ad&quot;</span><span class="p">))</span>
+<span class="n">integrated_adata</span> <span class="o">=</span> <span class="n">scATAnno_preprocess</span><span class="o">.</span><span class="n">add_variable</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">out_dir</span><span class="p">,</span><span class="s2">&quot;X_spectral_harmony.csv&quot;</span><span class="p">),</span> <span class="n">integrated_adata</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">reference</span> <span class="o">=</span> <span class="n">integrated_adata</span><span class="p">[</span><span class="n">integrated_adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;dataset&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;Atlas&quot;</span><span class="p">,:]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">reference</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s2">&quot;celltypes&quot;</span><span class="p">]</span> <span class="o">=</span>  <span class="n">scATAnno_assignment</span><span class="o">.</span><span class="n">curate_celltype_names</span><span class="p">(</span><span class="n">reference</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s2">&quot;celltypes&quot;</span><span class="p">],</span> <span class="n">atlas</span> <span class="o">=</span> <span class="s2">&quot;TIL&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pickle</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">out_dir</span><span class="p">,</span> <span class="s1">&#39;TIL_reference_palette.pickle&#39;</span><span class="p">),</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">handle</span><span class="p">:</span>
+    <span class="n">celltype_palette</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">handle</span><span class="p">)</span>
+
+<span class="n">scATAnno_plotting</span><span class="o">.</span><span class="n">defaultPlotting_umap</span><span class="p">()</span>
+<span class="n">sc</span><span class="o">.</span><span class="n">pl</span><span class="o">.</span><span class="n">umap</span><span class="p">(</span><span class="n">reference</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;celltypes&quot;</span><span class="p">,</span> <span class="n">palette</span> <span class="o">=</span> <span class="n">celltype_palette</span><span class="p">,</span> <span class="n">title</span> <span class="o">=</span> <span class="s2">&quot;TIL Reference Atlas&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+/opt/anaconda3/lib/python3.9/site-packages/scanpy/plotting/_tools/scatterplots.py:392: UserWarning: No data for colormapping provided via &#39;c&#39;. Parameters &#39;cmap&#39; will be ignored
+  cax = scatter(
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/tutorials_demo_TNBC_11_1.png" src="../_images/tutorials_demo_TNBC_11_1.png" />
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">query</span> <span class="o">=</span> <span class="n">integrated_adata</span><span class="p">[</span><span class="n">integrated_adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;dataset&#39;</span><span class="p">]</span> <span class="o">!=</span> <span class="s2">&quot;Atlas&quot;</span><span class="p">,:]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">projecton</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s2">&quot;data/TNBC_Pre_P012_t/&quot;</span><span class="p">,</span> <span class="s2">&quot;query_metadata.csv&quot;</span><span class="p">),</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">query</span><span class="o">.</span><span class="n">obs</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">query</span><span class="o">.</span><span class="n">obs</span><span class="p">,</span> <span class="n">projecton</span><span class="p">,</span> <span class="n">left_index</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">right_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>We first assign cell types based on KNN and compute KNN-based uncertainty score</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Perform KNN assignment</span>
+<span class="n">reference_label_col</span> <span class="o">=</span> <span class="s2">&quot;celltypes&quot;</span>
+<span class="n">use_rep</span> <span class="o">=</span> <span class="s2">&quot;X_spectral_harmony&quot;</span>
+<span class="n">query_KNN</span> <span class="o">=</span> <span class="n">scATAnno_assignment</span><span class="o">.</span><span class="n">scATAnno_KNN_assign</span><span class="p">(</span><span class="n">reference</span><span class="p">,</span> <span class="n">query</span><span class="p">,</span> <span class="n">reference_label_col</span><span class="o">=</span><span class="n">reference_label_col</span><span class="p">,</span> <span class="n">low_dim_col</span><span class="o">=</span><span class="n">use_rep</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>Because we are annotating TIL subtypes, we adopt more loose threshold cutoffs to annotate query cells. Query cells are assigned high weighted distance-based uncertainty score if their distances to the assigned reference cell type centroid are greater than 95 percentile. Query cells with uncertainty score greater than 0.5 are annotated as unknown.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Perform weighted-distance based assignment</span>
+<span class="n">distance_threshold</span> <span class="o">=</span> <span class="mi">95</span>
+<span class="n">uncertainty_threshold</span> <span class="o">=</span> <span class="mf">0.5</span>
+
+<span class="n">atlas</span> <span class="o">=</span> <span class="s2">&quot;TIL&quot;</span>
+<span class="n">query_distance</span> <span class="o">=</span> <span class="n">scATAnno_assignment</span><span class="o">.</span><span class="n">scATAnno_distance_assign</span><span class="p">(</span><span class="n">reference</span><span class="p">,</span> <span class="n">query_KNN</span><span class="p">,</span> <span class="n">reference_label_col</span><span class="o">=</span><span class="n">reference_label_col</span><span class="p">,</span> <span class="n">distance_threshold</span><span class="o">=</span><span class="n">distance_threshold</span><span class="p">,</span> <span class="n">atlas</span><span class="o">=</span><span class="n">atlas</span><span class="p">,</span> <span class="n">uncertainty_threshold</span><span class="o">=</span><span class="n">uncertainty_threshold</span><span class="p">,</span> <span class="n">use_rep</span> <span class="o">=</span> <span class="n">use_rep</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>Finally, we perform cluster-level assignment of query cells.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[23]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">query_annotated</span> <span class="o">=</span> <span class="n">scATAnno_assignment</span><span class="o">.</span><span class="n">scATAnno_cluster_assign</span><span class="p">(</span><span class="n">query_distance</span><span class="p">,</span> <span class="n">use_rep</span><span class="o">=</span><span class="n">use_rep</span><span class="p">,</span> <span class="n">cluster_col</span> <span class="o">=</span> <span class="s2">&quot;Clusters&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[24]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pickle</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">out_dir</span><span class="p">,</span> <span class="s1">&#39;all_palette_dictionary.pkl&#39;</span><span class="p">),</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">handle</span><span class="p">:</span>
+    <span class="n">annotation_palette</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">handle</span><span class="p">)</span>
+<span class="n">sc</span><span class="o">.</span><span class="n">pl</span><span class="o">.</span><span class="n">umap</span><span class="p">(</span><span class="n">query_annotated</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;paper_annotation_curated&quot;</span><span class="p">,</span> <span class="s2">&quot;cluster_annotation&quot;</span><span class="p">,</span> <span class="s1">&#39;Uncertainty_Score&#39;</span><span class="p">],</span> <span class="n">palette</span><span class="o">=</span><span class="n">annotation_palette</span><span class="p">,</span><span class="n">title</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Annotation Published in Zhang et al.&quot;</span><span class="p">,</span><span class="s2">&quot;scATAnno Annotation&quot;</span><span class="p">],</span>  <span class="n">legend_loc</span> <span class="o">=</span> <span class="s2">&quot;on data&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+WARNING: The title list is shorter than the number of panels. Using &#39;color&#39; value instead for some plots.
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+/opt/anaconda3/lib/python3.9/site-packages/scanpy/plotting/_tools/scatterplots.py:392: UserWarning: No data for colormapping provided via &#39;c&#39;. Parameters &#39;cmap&#39; will be ignored
+  cax = scatter(
+/opt/anaconda3/lib/python3.9/site-packages/scanpy/plotting/_tools/scatterplots.py:392: UserWarning: No data for colormapping provided via &#39;c&#39;. Parameters &#39;cmap&#39; will be ignored
+  cax = scatter(
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/tutorials_demo_TNBC_20_2.png" src="../_images/tutorials_demo_TNBC_20_2.png" />
+</div>
+</div>
+<p>Compare the annotation results between scATAnno and original publication.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[25]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pySankey.sankey</span> <span class="kn">import</span> <span class="n">sankey</span>
+
+<span class="n">pred_col</span> <span class="o">=</span> <span class="s1">&#39;cluster_annotation&#39;</span>
+<span class="n">true_col</span> <span class="o">=</span> <span class="s1">&#39;paper_annotation_curated&#39;</span>
+
+<span class="n">sankey</span><span class="p">(</span>
+    <span class="n">query_annotated</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="n">pred_col</span><span class="p">],</span> <span class="n">query_annotated</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="n">true_col</span><span class="p">],</span> <span class="n">aspect</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">colorDict</span><span class="o">=</span><span class="n">annotation_palette</span><span class="p">,</span>
+    <span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">figure_name</span><span class="o">=</span><span class="kc">None</span>
+    <span class="p">)</span>
+
+<span class="c1"># plt.gcf().set_size_inches(6, 10)</span>
+<span class="c1"># plt.savefig(os.path.join(out_dir,&quot;{}.png&quot;.format(&quot;Sankey_CellType_Annotation_paper_cluster&quot;)), bbox_inches=&#39;tight&#39;, dpi=300)</span>
+<br/></pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/tutorials_demo_TNBC_22_0.png" src="../_images/tutorials_demo_TNBC_22_0.png" />
+</div>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="demo_PBMC10K_Multiome.html" class="btn btn-neutral float-left" title="PBMC10K Multiome" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="demo_BCC_multiple_samples.html" class="btn btn-neutral float-right" title="BCC Multiple Samples" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Yijia Jiang.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

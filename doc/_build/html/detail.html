@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Prepare Reference Atlas &mdash; SCATAnno: Automated Cell Type Annotation for Single-cell ATAC-seq Data  documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Dimension reduction" href="algorithm.html" />
+    <link rel="prev" title="Reference Atlas" href="reference_details.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> SCATAnno: Automated Cell Type Annotation for Single-cell ATAC-seq Data
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Installation and Quick Start</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference Atlases</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="reference_details.html">Reference Atlas</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Workflow Details</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Prepare Reference Atlas</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#human-atlas">Human Atlas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#mouse-atlas">Mouse Atlas</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="#pipeline-overview">Pipeline Overview</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#original-input">Original Input</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#intermediate-output">Intermediate Output</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#final-output">Final Output</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Algorithms</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="algorithm.html">Dimension reduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="algorithm.html#cell-type-assignment">Cell-type Assignment</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="tutorials.html">Tutorials</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">SCATAnno: Automated Cell Type Annotation for Single-cell ATAC-seq Data</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Prepare Reference Atlas</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/detail.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="prepare-reference-atlas">
+<h1>Prepare Reference Atlas<a class="headerlink" href="#prepare-reference-atlas" title="Permalink to this heading"></a></h1>
+<section id="human-atlas">
+<h2>Human Atlas<a class="headerlink" href="#human-atlas" title="Permalink to this heading"></a></h2>
+<ul>
+<li><p>Select adult cells</p></li>
+<li><p>Down sample cell numbers to ~80K high quality cells</p></li>
+<li><p>Select cell-type specific peaks (~ 430K peaks)</p>
+<blockquote>
+<div><figure class="align-center" id="id1">
+<a class="reference internal image-reference" href="_images/umap_human_reference.png"><img alt="UMAP of Human scATAC Reference Atlas" src="_images/umap_human_reference.png" style="width: 604.1999999999999px; height: 257.4px;" /></a>
+<figcaption>
+<p><span class="caption-text">Perform dimensionality reduction using spectral embedding, visualize annotation on UMAP</span><a class="headerlink" href="#id1" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</div></blockquote>
+</li>
+</ul>
+</section>
+<section id="mouse-atlas">
+<h2>Mouse Atlas<a class="headerlink" href="#mouse-atlas" title="Permalink to this heading"></a></h2>
+<ul>
+<li><p>Remove unknown cell types</p></li>
+<li><p>Down sample cell numbers to ~35K high quality cells</p></li>
+<li><p>Use 430,000 potential regulatory elements</p>
+<blockquote>
+<div><figure class="align-center" id="id2">
+<a class="reference internal image-reference" href="_images/umap_mouse_reference.png"><img alt="UMAP of Mouse scATAC Reference Atlas" src="_images/umap_mouse_reference.png" style="width: 738.6px; height: 257.4px;" /></a>
+<figcaption>
+<p><span class="caption-text">Perform dimensionality reduction using spectral embedding, visualize annotation on UMAP</span><a class="headerlink" href="#id2" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</div></blockquote>
+</li>
+</ul>
+</section>
+</section>
+<section id="pipeline-overview">
+<h1>Pipeline Overview<a class="headerlink" href="#pipeline-overview" title="Permalink to this heading"></a></h1>
+<p>The conceptual idea and schematic of scATAC annotation is illustrated here.</p>
+<blockquote>
+<div><figure class="align-center">
+<a class="reference internal image-reference" href="_images/workflow.png"><img alt="Workflow of scATAC Annotation" src="_images/workflow.png" style="width: 828.0px; height: 468.0px;" /></a>
+</figure>
+</div></blockquote>
+<section id="original-input">
+<h2>Original Input<a class="headerlink" href="#original-input" title="Permalink to this heading"></a></h2>
+<p>The following files are needed to run <em>Celltype Annotation</em> on your own experiment:</p>
+<ul class="simple">
+<li><p><em>fragments.tsv.gz</em> files with fragments for each scATAC sample</p></li>
+<li><p><em>fragments.tsv.gz.tbi</em> files with fragments index information for each scATAC sample</p></li>
+<li><p><em>cell barcodes</em> files with high quality cells for each scATAC sample</p></li>
+<li><p><em>cell-type specific peak</em> file obtained from human reference atlas paper</p></li>
+<li><p>Optionally: <em>UMAP</em> or <em>tSNE</em> projection file from each sample</p></li>
+</ul>
+<p>Currently, this package only supports hg38 and mm10 reference mapping</p>
+</section>
+<section id="intermediate-output">
+<h2>Intermediate Output<a class="headerlink" href="#intermediate-output" title="Permalink to this heading"></a></h2>
+<p>The following files are intermediate outputs of <em>Celltype Annotation</em> to obtain cell-type specific peak by cell matrix:</p>
+<ul class="simple">
+<li><p><em>matrix.mtx</em> Sparse matrix files with fragment reads</p></li>
+<li><p><em>peaks.tsv</em> Cell-type restricted peaks</p></li>
+<li><p><em>cell.tsv</em> High quality cells, the same cells as input</p></li>
+</ul>
+</section>
+<section id="final-output">
+<h2>Final Output<a class="headerlink" href="#final-output" title="Permalink to this heading"></a></h2>
+<p>The following files are final outputs of <em>Celltype Annotation</em> using the annotation tool:</p>
+<ul class="simple">
+<li><p><em>merged.h5ad</em> anndata of integrated query and reference cells</p></li>
+<li><p><em>prediction.tsv</em> Cell-type prediction of query cells</p></li>
+<li><p><em>uncertainty_score.tsv</em> Uncertainty score of cel-type prediction</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="reference_details.html" class="btn btn-neutral float-left" title="Reference Atlas" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="algorithm.html" class="btn btn-neutral float-right" title="Dimension reduction" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Yijia Jiang.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

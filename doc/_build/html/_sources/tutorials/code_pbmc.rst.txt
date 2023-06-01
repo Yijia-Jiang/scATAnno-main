@@ -1,0 +1,8 @@
+PBMC10K Multiome
+===================
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Contents:
+
+   demo_PBMC10K_Multiome

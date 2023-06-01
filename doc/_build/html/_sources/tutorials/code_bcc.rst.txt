@@ -1,0 +1,8 @@
+Basal cell carcinoma samples
+===================
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Contents:
+
+   demo_BCC_multiple_samples
