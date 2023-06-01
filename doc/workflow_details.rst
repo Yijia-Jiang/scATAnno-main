@@ -5,6 +5,7 @@ Healthy Adult Reference Atlas
 ---------------------------------
 - Select deep-sequenced 100K adult cells
 - Select adult specific peaks (~ 890K peaks)
+- `Downloaded Healthy Adult Reference atlas <https://www.dropbox.com/s/3ezp2t6gw6hw21v/Healthy_Adult_reference_atlas.h5ad?dl=0>`_
 
    .. figure:: _static/img/2.workflow_details-HealthyAdult.png
       :scale: 80 %
@@ -17,6 +18,7 @@ PBMC Reference Atlas
 ----------------------
 - Select 39441 PBMC cells
 - Generate 196K peaks by MACS2 Peak-Calling
+- `Downloaded PBMC atlas <https://www.dropbox.com/s/y9wc6h5mmydj7gf/PBMC_reference_atlas_final.h5ad?dl=0>`_
 
    .. figure:: _static/img/2.workflow_details-PBMC.png
       :scale: 80 %
@@ -30,6 +32,7 @@ BCC TIL Reference Atlas
 --------------------------
 - Select 22008 TIL cells
 - Generate 340K peaks by MACS2 Peak-Calling
+- `Downloaded TIL atlas <https://www.dropbox.com/s/ky4jezsj3pf2qwi/BCC_TIL_reference_atlas_final.h5ad?dl=0>`_
 
    .. figure:: _static/img/2.workflow_details-TIL.png
       :scale: 80 %

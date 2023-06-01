@@ -29,7 +29,9 @@ author = 'Yijia Jiang'
 # ones.
 extensions = [
 "nbsphinx",
-'sphinx.ext.autosectionlabel'
+'sphinx.ext.autosectionlabel',
+"sphinx.ext.autodoc",
+    "sphinx.ext.extlinks"
 ]
 
 

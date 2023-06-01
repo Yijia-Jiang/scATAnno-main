@@ -1,6 +1,6 @@
 Reference Atlas
 ===================
-Below are Reference Altases in the original publication. If you want to find processed and ready-to-use reference atlases, please check: Prepare Reference Atlas Section
+Below are Reference Altases in the original publication. If you want to find processed and ready-to-use reference atlases, please check :doc:`Prepare Reference Atlas </workflow_details/>`
 
 Human scATAC Reference: Zhang, Kai, et al. Cell (2021)
 ------------------------------------------------------

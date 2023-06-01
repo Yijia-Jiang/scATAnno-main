@@ -21,8 +21,6 @@ scATAnno is a Python-based workflow that automates the annotation of single-cell
 
 .. _citation:
 
-Citation
-============================
 
 If you use this pipeline, please cite the following reference:
 
