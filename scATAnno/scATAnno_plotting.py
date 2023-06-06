@@ -10,12 +10,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 sns.set_theme(style='white')
 
-# # newest version 01262023
-# plt.rcParams['axes.titleweight'] = "bold"
-# plt.rcParams['axes.titlesize'] = 20
-# plt.rcParams['axes.labelsize'] = 20
-# plt.rcParams['xtick.labelsize'] = 20
-# plt.rcParams['xtick.labelsize'] = 20
+
 
 def gen_mpl_labels(adata, groupby, exclude=(), ax=None, adjust_kwargs=None, text_kwargs=None):
     if adjust_kwargs is None:

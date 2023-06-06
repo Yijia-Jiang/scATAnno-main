@@ -435,29 +435,6 @@ def scATAnno_distance_assign(reference, query, reference_label_col, distance_thr
     return query_res2
 
 ########## Functions for cluster level annotation ##########
-# def cluster_annotation(cluster_df, prediction_col = None, cluster_col = None, cluster_annotation_col = 'cluster_annotation'):
-#     if cluster_col is None:
-#         cluster_col = "Clusters"
-#     else: cluster_col = cluster_col
-    
-#     if prediction_col is None:
-#         prediction_col = "corrected_pred_y_major"
-#     else: prediction_col = prediction_col
-    
-#     if cluster_col in cluster_df.columns:
-#         cluster_anno_unstack = cluster_df.groupby(cluster_col)[prediction_col].value_counts().unstack()
-#     else: raise KeyError("Column {} Not Found in dataframe".format(cluster_col))
-#     cluster_group_anno = {}
-#     for i in cluster_anno_unstack.index:
-#         cluster_group_anno[i] = cluster_anno_unstack.columns[np.argmax(cluster_anno_unstack.loc[i,:])]
-    
-#     cluster_annotations = []
-#     for cell_idx in range(cluster_df.shape[0]):
-#         key = cluster_df.iloc[cell_idx, :][cluster_col]
-#         anno = cluster_group_anno[key]
-#         cluster_annotations.append(anno)
-#     cluster_df[cluster_annotation_col] = cluster_annotations
-#     return cluster_df
 
 def cluster_annotation_anndata(adata, prediction_col = None, cluster_col = None):
     if cluster_col is None:
@@ -536,51 +513,7 @@ def scATAnno_annotate(reference, query, reference_label_col, atlas, distance_thr
     
     query_only_newUMAP = scATAnno_cluster_assign(query_distance, use_rep=use_rep, cluster_col=cluster_col, UMAP=UMAP, leiden_resolution=leiden_resolution)
 
-    # query_only_newUMAP = query_distance.copy()
-    # if UMAP:
-    #     sc.pp.neighbors(query_only_newUMAP, use_rep=use_rep)
-    #     sc.tl.umap(query_only_newUMAP)
     
-    # if cluster_col is None:
-    #     sc.tl.leiden(query_only_newUMAP,  key_added = "leiden", resolution = leiden_resolution)
-    #     query_only_newUMAP = cluster_annotation_anndata(query_only_newUMAP,  cluster_col = "leiden",prediction_col = "2.corrected_celltype")
-    # else:
-    #     query_only_newUMAP = cluster_annotation_anndata(query_only_newUMAP,  cluster_col = cluster_col, prediction_col = "2.corrected_celltype")
-
     return query_only_newUMAP
 
-# def scAnno_celltype_annotation(reference, query, reference_label_col, atlas, distance_threshold, uncertainty_threshold, 
-#            cluster_col = None, UMAP = True, leiden_resolution = 3,use_rep="X_spectral_harmony",knn_neighbors=30,
-#           prediction_col="pred_y" ):
-#     """
-#     Return query data with annotation steps
 
-#     Parameters
-#     ----------
-#     reference: anndata of reference atlas
-#     query: anndata of query cells
-#     reference_label_col: celltype label column of reference atlas
-#     atlas: selection of reference atlas
-#     distance_threshold: threshold for weighted distance filtering 
-#     uncertainty_threshold: final uncertainty score threshold
-#     cluster_col: if None, automatically cluster by leiden algorithm; otherwise, leiden cluster and then input cluster column name
-#     UMAP: if True, redo UMAP for query data; else, do not change UMAP
-#     prediction_col: predicted celltype column from KNN raw assignment for query data
-#     """
-#     query = scATAnno_KNN_assign(reference, query, reference_label_col=reference_label_col, low_dim_col=use_rep, knn_neighbors=knn_neighbors, in_place=True)
-#     reference_clean, weight_df, query  = distance_filter(reference, query, reference_label_col = reference_label_col, prediction_col=prediction_col, use_rep = use_rep, percent_threshold = distance_threshold)
-    
-#     query = assign_final_cell_type(query, threshold=uncertainty_threshold, atlas = atlas, predicted_variable = prediction_col, u1_variable = "uncertainty_score_step1", u2_variable = "uncertainty_score_step2")
-    
-#     query_only_newUMAP = query.copy()
-#     if UMAP:
-#         sc.pp.neighbors(query_only_newUMAP, use_rep=use_rep)
-#         sc.tl.umap(query_only_newUMAP)
-    
-#     if cluster_col is None:
-#         sc.tl.leiden(query_only_newUMAP,  key_added = "leiden", resolution = leiden_resolution)
-#         query_only_newUMAP = cluster_annotation_anndata(query_only_newUMAP,  cluster_col = "leiden",prediction_col = "2.corrected_celltype")
-#     else:
-#         query_only_newUMAP = cluster_annotation_anndata(query_only_newUMAP,  cluster_col = cluster_col, prediction_col = "2.corrected_celltype")
-
-#     return query_only_newUMAP

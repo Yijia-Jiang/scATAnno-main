@@ -113,60 +113,6 @@ def add_variable(variable_file, adata, variable_col="X_spectral_harmony"):
         return adata
     else: raise ValueError("file does not exist")
 
-# def convert_mtx2anndata_quickATAC(path, mtx_file,cells_file,features_file, variable_prefix, major_col =None ,minor_col = None, sep=(":", "-"),add_metrics = True):
-#     # feature peak must be sep by (":","-")
-#     data = sc.read_mtx(os.path.join(path,mtx_file))
-#     data = data.T
-#     features = pd.read_csv(os.path.join(path, features_file), header=None, sep= '\t')
-#     barcodes = pd.read_csv(os.path.join(path, cells_file), header=None)
 
-#     # Split feature matrix and set peak separated by (:, -) to match reference peaks
-#     data.var_names = features[0]
-#     data.obs_names = barcodes[0]
-    
-#     if major_col is None:
-#         major_col = "major cell type"
-#         data.obs[major_col] = variable_prefix
-#     else: data.obs[major_col] = variable_prefix
-    
-#     if minor_col is None:
-#         minor_col = "cell type"
-#         data.obs[minor_col] = variable_prefix
-#     elif minor_col != False: 
-#         data.obs[minor_col] = variable_prefix
-        
-    
-#     data.obs['tissue'] = variable_prefix
-#     data.obs['dataset'] = variable_prefix
-    
-#     # remove spike-in cell
-#     data = data[data.obs.index != "spike-in"]
-#     # add qc filtering metrics from quickATAC if add_metrics set to true
-#     if add_metrics == True:
-#         import glob
-#         try:
-#             metrics_filepath = glob.glob(os.path.join(path, "*meta*"))[0]
-#             metrics = pd.read_csv(metrics_filepath, sep='\t', index_col=0)
-#             metrics = metrics[metrics.index != "spike-in"]
-#             data.obs = pd.merge(data.obs, metrics, right_index=True, left_index = True)
-#         except OSError as error:
-#             import warnings
-#             warnings.warn('Metrics file not found, anndata returned with no meta metrics')
-#             return data
-#     return data
-
-
-
-# def merge_anndata(reference_data, query_data, select_col):
-# 	if isinstance(reference_data, ad.AnnData) & isinstance(query_data, ad.AnnData):
-# 		# Create metadata
-# 		query_meta = query_data.obs[select_col] 
-# 		reference_meta = reference_data.obs[select_col]
-# 		# Merge two datasets
-# 		new_data = ad.concat([reference_data, query_data])
-# 		merged_meta = pd.concat([reference_meta, query_meta])
-# 		new_data.obs = merged_meta
-# 		return new_data
-# 	else: print("Input must be anndata")
 
 
