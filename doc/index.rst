@@ -24,6 +24,10 @@ scATAnno is a Python-based workflow that automates the annotation of single-cell
 
 If you use this pipeline, please cite the following reference:
 
+Jiang et al., scATAnno: Automated Cell Type Annotation for single-cell ATAC-seq Data
+
+BioRxiv Preprint (https://www.biorxiv.org/content/10.1101/2023.06.01.543296v2)
+
 The documentation is organized into the following sections:
 
 .. toctree::
