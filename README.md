@@ -1,6 +1,6 @@
 # scATAnno
 
-### An Automated Cell Type Annotation for Single-cell ATAC-seq Data
+### An Automated Cell Type Annotation for Single-cell ATAC Sequencing Data
 <img src='https://github.com/aj088/scATAnno-main/blob/main/doc/_static/img/2.workflow_details-MainFigure1.png'>
 
 For more detailed information, please refer to the [document](https://scatanno-main.readthedocs.io/en/latest/).
