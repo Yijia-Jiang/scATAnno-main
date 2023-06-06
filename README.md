@@ -7,6 +7,7 @@ For more detailed information, please refer to the [document](https://scatanno-m
 
 # Cite
 Jiang et al., scATAnno: Automated Cell Type Annotation for single-cell ATAC-seq Data
+
 BioRxiv Preprint (https://www.biorxiv.org/content/10.1101/2023.06.01.543296v2)
 
 
