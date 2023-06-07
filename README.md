@@ -6,7 +6,7 @@
 For more detailed information, please refer to the [document](https://scatanno-main.readthedocs.io/en/latest/).
 
 # Usage
-scATAnno has two important parts of functions. The first part is the integration function __`scATAnno_integrate()`__; the second part if cell type assignment functions __`scATAnno_KNN_assign()`__, __`scATAnno_KNN_assign()`__, __`scATAnno_distance_assign()`__, __`scATAnno_cluster_assign()`__, which can be applied sequentially to automatically annotation cells, as shown in the example below:
+scATAnno has two important parts of functions. The first part is the integration function __`scATAnno_integrate()`__; the second part if cell type assignment functions __`scATAnno_KNN_assign()`__, __`scATAnno_distance_assign()`__, __`scATAnno_cluster_assign()`__, which can be applied sequentially to automatically annotation cells, as shown in the example below:
 
 ```
 # reference and query are two AnnData matrices 
