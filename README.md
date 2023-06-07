@@ -10,14 +10,13 @@ scATAnno has two important parts of functions. The first part is the integration
 
 ```
 # reference and query are two AnnData matrices 
-
 # Integration step
+
 integrated_adata = scATAnno_integrate(reference, query, reference_label_col="celltypes)
 reference = integrated_adata[integrated_adata.obs["dataset"] == "Atlas"]
 query = integrated_adata[integrated_adata.obs["dataset"] != "Atlas"]
 
 # Celltype assignment step
-
 # Perform KNN assignment
 query_KNN = scATAnno_KNN_assign(reference, query, reference_label_col="celltypes")
 
@@ -30,8 +29,6 @@ query_annotated = scATAnno_cluster_assign(query_distance)
 ```
 
 # Cite
-Jiang et al., scATAnno: Automated Cell Type Annotation for single-cell ATAC-seq Data
-
-BioRxiv Preprint (https://www.biorxiv.org/content/10.1101/2023.06.01.543296v2)
+Yijia Jiang, Zhirui Hu, Junchen Jiang, Alexander Zhu, Yi Zhang, Allen Lynch, Yingtian Xie, Rong Li, Ningxuan Zhou, Cliff A. Meyer, Palome Cejas, Myles Brown, Henry W. Long, Xintao Qiu. scATAnno: Automated Cell Type Annotation for single-cell ATAC sequencing Data. bioRxiv 2023.06.01.543296.
 
 
