@@ -2,7 +2,7 @@ Installation
 ===================
 Instruction of Installation
 
-Option 1: Development Version
+Development Version
 ------------------------------------
 
 Clone the source code repository and go to the `package` directory,
