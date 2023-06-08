@@ -5,6 +5,14 @@
 
 For more detailed information, please refer to the [document](https://scatanno-main.readthedocs.io/en/latest/).
 
+# Installation
+For now, install scATAnno through github:
+
+    $ git clone https://github.com/aj088/scATAnno-main.git
+    $ cd scATAnno-main
+    $ pip install .
+
+
 # Usage
 scATAnno has two important parts of functions. The first part is the integration function __`scATAnno_integrate()`__; the second part if cell type assignment functions __`scATAnno_KNN_assign()`__, __`scATAnno_distance_assign()`__, __`scATAnno_cluster_assign()`__, which can be applied sequentially to automatically annotation cells, as shown in the example below:
 
