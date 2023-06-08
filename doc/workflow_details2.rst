@@ -42,5 +42,5 @@ The following files are final outputs of *scATAnno* using the annotation tool:
 - *X_spectral_harmony.csv* Harmozied spectral embeddings of integrated data
 - *query.h5ad* Anndata of query cells which stores annotation results. This AnnData should include essential prediction results
 
-   - *cluster_annotation* cell type assignment at cluster-level
-   - *uncertainty_score* final uncertainty score, which takes the maximum of KNN-based uncertainty and weighted distance-based uncertainty of query cells
+   *cluster_annotation* cell type assignment at cluster-level
+   *uncertainty_score* final uncertainty score, which takes the maximum of KNN-based uncertainty and weighted distance-based uncertainty of query cells
