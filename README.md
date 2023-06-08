@@ -8,8 +8,6 @@ For more detailed information, please refer to the [document](https://scatanno-m
 # Installation
 For now, install scATAnno through github:
 
-.. code-block:: bash
-
     $ git clone https://github.com/aj088/scATAnno-main.git
     $ cd scATAnno-main
     $ pip install .
