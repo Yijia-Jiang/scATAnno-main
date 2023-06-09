@@ -20,7 +20,7 @@ scATAnno has two important parts of functions. The first part is the integration
 # reference and query are two AnnData matrices 
 # Integration step
 
-integrated_adata = scATAnno_integrate(reference, query, reference_label_col="celltypes)
+integrated_adata = scATAnno_integrate(reference, query, reference_label_col="celltypes")
 reference = integrated_adata[integrated_adata.obs["dataset"] == "Atlas"]
 query = integrated_adata[integrated_adata.obs["dataset"] != "Atlas"]
 
