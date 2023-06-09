@@ -6,7 +6,7 @@
 For more detailed information, please refer to the [document](https://scatanno-main.readthedocs.io/en/latest/).
 
 # Installation
-For now, install scATAnno through github:
+Install scATAnno through github:
 
     $ git clone https://github.com/aj088/scATAnno-main.git
     $ cd scATAnno-main
