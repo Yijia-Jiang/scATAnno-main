@@ -2,7 +2,7 @@ Installation
 ===================
 Instruction of Installation
 
-Development Version
+Install scATAnno through github
 ------------------------------------
 
 Clone the source code repository and go to the `package` directory,
@@ -14,4 +14,3 @@ use `pip install . ` to install the package.
     cd scATAnno-main
     pip install .
 
-More installation options will come out soon.
