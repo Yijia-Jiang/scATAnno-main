@@ -6,6 +6,10 @@
 For more detailed information, please refer to the [document](https://scatanno-main.readthedocs.io/en/latest/).
 
 # Installation
+Install scATAnno through pip:
+
+    $ pip install scATAnno
+    
 Install scATAnno through github:
 
     $ git clone https://github.com/aj088/scATAnno-main.git
