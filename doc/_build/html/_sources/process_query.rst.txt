@@ -1,0 +1,21 @@
+Process Query Datasets
+===================
+
+
+Example of generating BCC query count matrix
+
+"""
+
+#!/bin/bash
+
+spikein=spikein_fragment_BCC_narrowPeak.tsv
+bedfile=BCC_Atlas_merged_peak.narrowPeak.filter.sorted.bed
+
+quick filter-barcodes input/$sample/*fragments.tsv.gz --barcodes input/$sample/*barcodes.tsv > input/$sample/cell_filtered_fragments.tmp.tsv &&
+cat input/$spikein input/$sample/cell_filtered_fragments.tmp.tsv > input/$sample/concat_fake_true_fragments.tmp.tsv &&
+sort -k 1,1 -k2,2n input/$sample/concat_fake_true_fragments.tmp.tsv > input/$sample/concat_fake_true_fragments.sorted.tsv &&
+echo "finish sorting concated spike-in fragments" && mkdir counts/$sample/ &&
+quick agg-countmatrix input/$sample/concat_fake_true_fragments.sorted.tsv -g input/hg38.chrom.sizes.txt -p input/$bedfile --max-fragsize 999999999 -o counts/$sample/ &&
+echo "Done!"
+
+"""

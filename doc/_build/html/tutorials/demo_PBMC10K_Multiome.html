@@ -22,7 +22,9 @@
         <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" /> 
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="TNBC sample" href="demo_TNBC.html" />
+    <link rel="prev" title="Tutorials" href="index.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -60,9 +62,15 @@
 <li class="toctree-l1"><a class="reference internal" href="../algorithm.html#cell-type-assignment">Cell-type Assignment</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../tutorials.html">Case Study Datasets</a></li>
-<li class="toctree-l1"><a class="reference internal" href="index.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../process_query.html">Process Query Datasets</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Tutorials</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">PBMC10K Multiome</a></li>
+<li class="toctree-l2"><a class="reference internal" href="demo_TNBC.html">TNBC sample</a></li>
+<li class="toctree-l2"><a class="reference internal" href="demo_BCC_multiple_samples.html">BCC Multiple Samples</a></li>
+</ul>
+</li>
 </ul>
 
         </div>
@@ -79,6 +87,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">Tutorials</a> &raquo;</li>
       <li>PBMC10K Multiome</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/tutorials/demo_PBMC10K_Multiome.ipynb.txt" rel="nofollow"> View page source</a>
@@ -125,25 +134,26 @@
 </pre></div>
 </div>
 </div>
+<p>In this tutorial, we apply PBMC reference atlas to PBMC 10K Multiome dataset. The input files are 1) reference atlas in h5ad format; 2) query data in mtx and tsv formats, whose features are aligned with PBMC reference peak.</p>
 <p>Download reference data</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># !wget &quot;https://www.dropbox.com/s/y9wc6h5mmydj7gf/PBMC_reference_atlas_final.h5ad?dl=1&quot;</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># !wget -O PBMC_reference_atlas_final.h5ad &quot;https://www.dropbox.com/s/y9wc6h5mmydj7gf/PBMC_reference_atlas_final.h5ad?dl=1&quot;</span>
 </pre></div>
 </div>
 </div>
-<p>Download query data</p>
+<p>Download query data, including 1) scATAC (matrix.mtx, features.tsv and barcodes.tsv), features are the reference peak of PBMC reference atlas 2) scRNA (filtered_feature_bc_matrix.h5)</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># !wget &quot;https://www.dropbox.com/sh/omljmpqfguxlxs1/AACAanCUhqzOy0EmUKN4XdrZa?dl=1&quot;</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># !wget -O PBMC10k_multiome_vPBMCatlas.zip &quot;https://www.dropbox.com/s/3g63m832mbeec4s/PBMC10k_multiome_vPBMCatlas.zip?dl=1&quot;</span>
 </pre></div>
 </div>
 </div>
-<p>We load reference atlas data and query data. Reference atlas is stored as h5ad AnnData in the data directory; query data is imported as MTX and TSV files from QuickATAC output.</p>
+<p>We load reference atlas data and query data. Reference atlas is stored as h5ad AnnData in the data directory; query data is imported from QuickATAC output.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
@@ -156,7 +166,7 @@
 
 <span class="n">reference_data_path</span> <span class="o">=</span> <span class="s2">&quot;data/Reference/PBMC_reference_atlas_final.h5ad&quot;</span>
 <span class="n">reference_data</span> <span class="o">=</span> <span class="n">scATAnno_preprocess</span><span class="o">.</span><span class="n">load_reference_data</span><span class="p">(</span><span class="n">reference_data_path</span><span class="p">)</span>
-<span class="n">query_data</span> <span class="o">=</span> <span class="n">scATAnno_preprocess</span><span class="o">.</span><span class="n">import_query_data</span><span class="p">(</span><span class="n">path</span> <span class="o">=</span> <span class="s1">&#39;data/PBMC10k_multiome_vPBMCatlas/&#39;</span><span class="p">,</span>
+<span class="n">query_data</span> <span class="o">=</span> <span class="n">scATAnno_preprocess</span><span class="o">.</span><span class="n">import_query_data</span><span class="p">(</span><span class="n">path</span> <span class="o">=</span> <span class="s1">&#39;data/PBMC10k_multiome_vPBMCatlas/scATAC/&#39;</span><span class="p">,</span>
                                     <span class="n">mtx_file</span> <span class="o">=</span> <span class="s1">&#39;matrix.mtx.gz&#39;</span><span class="p">,</span>
                                     <span class="n">cells_file</span> <span class="o">=</span> <span class="s1">&#39;barcodes.tsv.gz&#39;</span><span class="p">,</span>
                                     <span class="n">features_file</span> <span class="o">=</span> <span class="s1">&#39;features.tsv.gz&#39;</span><span class="p">,</span>
@@ -314,7 +324,7 @@ AnnData object with n_obs × n_vars = 51350 × 196618
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/tutorials_demo_PBMC10K_Multiome_17_1.png" src="../_images/tutorials_demo_PBMC10K_Multiome_17_1.png" />
+<img alt="../_images/tutorials_demo_PBMC10K_Multiome_18_1.png" src="../_images/tutorials_demo_PBMC10K_Multiome_18_1.png" />
 </div>
 </div>
 <div class="nbinput docutils container">
@@ -343,7 +353,7 @@ AnnData object with n_obs × n_vars = 51350 × 196618
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/tutorials_demo_PBMC10K_Multiome_18_1.png" src="../_images/tutorials_demo_PBMC10K_Multiome_18_1.png" />
+<img alt="../_images/tutorials_demo_PBMC10K_Multiome_19_1.png" src="../_images/tutorials_demo_PBMC10K_Multiome_19_1.png" />
 </div>
 </div>
 <p>We investigated cell types in the PBMC reference atlas and re-annotated gamma delta T cell cluster as MAIT cell cluster by showing chromatin accessibility of gene signatures in this cluster.</p>
@@ -417,10 +427,10 @@ AnnData object with n_obs × n_vars = 11909 × 196618
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/tutorials_demo_PBMC10K_Multiome_24_1.png" src="../_images/tutorials_demo_PBMC10K_Multiome_24_1.png" />
+<img alt="../_images/tutorials_demo_PBMC10K_Multiome_25_1.png" src="../_images/tutorials_demo_PBMC10K_Multiome_25_1.png" />
 </div>
 </div>
-<p>We benchmark scATAnno results with seurat annotation.</p>
+<p>We benchmark scATAnno results with seurat annotation. Seurat annotation is stored in “Seurat_RNA_annotation.csv”</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[34]:
 </pre></div>
@@ -466,7 +476,7 @@ AnnData object with n_obs × n_vars = 10412 × 196618
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/tutorials_demo_PBMC10K_Multiome_27_1.png" src="../_images/tutorials_demo_PBMC10K_Multiome_27_1.png" />
+<img alt="../_images/tutorials_demo_PBMC10K_Multiome_28_1.png" src="../_images/tutorials_demo_PBMC10K_Multiome_28_1.png" />
 </div>
 </div>
 <p>Lastly, we compare the annotation results between scATAnno and Seurat.</p>
@@ -499,7 +509,7 @@ AnnData object with n_obs × n_vars = 10412 × 196618
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/tutorials_demo_PBMC10K_Multiome_29_1.png" src="../_images/tutorials_demo_PBMC10K_Multiome_29_1.png" />
+<img alt="../_images/tutorials_demo_PBMC10K_Multiome_30_1.png" src="../_images/tutorials_demo_PBMC10K_Multiome_30_1.png" />
 </div>
 </div>
 <div class="nbinput docutils container">
@@ -589,7 +599,7 @@ Monocyte (3369)                    3274            95     3369
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/tutorials_demo_PBMC10K_Multiome_31_1.png" src="../_images/tutorials_demo_PBMC10K_Multiome_31_1.png" />
+<img alt="../_images/tutorials_demo_PBMC10K_Multiome_32_1.png" src="../_images/tutorials_demo_PBMC10K_Multiome_32_1.png" />
 </div>
 </div>
 <div class="nbinput docutils container">
@@ -1045,7 +1055,7 @@ Monocyte (3369)                    3274            95     3369
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/tutorials_demo_PBMC10K_Multiome_39_0.png" src="../_images/tutorials_demo_PBMC10K_Multiome_39_0.png" />
+<img alt="../_images/tutorials_demo_PBMC10K_Multiome_40_0.png" src="../_images/tutorials_demo_PBMC10K_Multiome_40_0.png" />
 </div>
 </div>
 </section>
@@ -1053,7 +1063,10 @@ Monocyte (3369)                    3274            95     3369
 
            </div>
           </div>
-          <footer>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Tutorials" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="demo_TNBC.html" class="btn btn-neutral float-right" title="TNBC sample" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
 
   <hr/>
 

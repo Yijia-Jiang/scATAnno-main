@@ -22,7 +22,9 @@
         <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" /> 
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="BCC Multiple Samples" href="demo_BCC_multiple_samples.html" />
+    <link rel="prev" title="PBMC10K Multiome" href="demo_PBMC10K_Multiome.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -60,9 +62,15 @@
 <li class="toctree-l1"><a class="reference internal" href="../algorithm.html#cell-type-assignment">Cell-type Assignment</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../tutorials.html">Case Study Datasets</a></li>
-<li class="toctree-l1"><a class="reference internal" href="index.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../process_query.html">Process Query Datasets</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Tutorials</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="demo_PBMC10K_Multiome.html">PBMC10K Multiome</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">TNBC sample</a></li>
+<li class="toctree-l2"><a class="reference internal" href="demo_BCC_multiple_samples.html">BCC Multiple Samples</a></li>
+</ul>
+</li>
 </ul>
 
         </div>
@@ -79,6 +87,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">Tutorials</a> &raquo;</li>
       <li>TNBC sample</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/tutorials/demo_TNBC.ipynb.txt" rel="nofollow"> View page source</a>
@@ -129,16 +138,16 @@
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># !wget &quot;https://www.dropbox.com/s/ky4jezsj3pf2qwi/BCC_TIL_reference_atlas_final.h5ad?dl=1&quot;</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># !wget -O BCC_TIL_reference_atlas_final.h5ad &quot;https://www.dropbox.com/s/ky4jezsj3pf2qwi/BCC_TIL_reference_atlas_final.h5ad?dl=1&quot;</span>
 </pre></div>
 </div>
 </div>
-<p>Download TNBC query data</p>
+<p>Download TNBC query data, whose features are aligned with BCC TIL reference peak</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># !wget &quot;https://www.dropbox.com/sh/gbsbnnfdiz2figa/AADmAJvg2i6nz6sINF0RXThqa?dl=1&quot;</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># !wget -O TNBC_Pre_P012_t.zip &quot;https://www.dropbox.com/s/7vyk08xrv81b1q2/TNBC_Pre_P012_t.zip?dl=1&quot;</span>
 </pre></div>
 </div>
 </div>
@@ -463,7 +472,10 @@ WARNING: The title list is shorter than the number of panels. Using &#39;color&#
 
            </div>
           </div>
-          <footer>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="demo_PBMC10K_Multiome.html" class="btn btn-neutral float-left" title="PBMC10K Multiome" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="demo_BCC_multiple_samples.html" class="btn btn-neutral float-right" title="BCC Multiple Samples" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
 
   <hr/>
 

@@ -46,6 +46,14 @@
   },
   {
    "cell_type": "markdown",
+   "id": "6778110e",
+   "metadata": {},
+   "source": [
+    "In this tutorial, we apply PBMC reference atlas to PBMC 10K Multiome dataset. The input files are 1) reference atlas in h5ad format; 2) query data in mtx and tsv formats, whose features are aligned with PBMC reference peak. "
+   ]
+  },
+  {
+   "cell_type": "markdown",
    "id": "09b5f40e",
    "metadata": {},
    "source": [
@@ -59,7 +67,7 @@
    "metadata": {},
    "outputs": [],
    "source": [
-    "# !wget \"https://www.dropbox.com/s/y9wc6h5mmydj7gf/PBMC_reference_atlas_final.h5ad?dl=1\""
+    "# !wget -O PBMC_reference_atlas_final.h5ad \"https://www.dropbox.com/s/y9wc6h5mmydj7gf/PBMC_reference_atlas_final.h5ad?dl=1\""
    ]
   },
   {
@@ -67,7 +75,7 @@
    "id": "6aa6fce2",
    "metadata": {},
    "source": [
-    "Download query data"
+    "Download query data, including 1) scATAC (matrix.mtx, features.tsv and barcodes.tsv), features are the reference peak of PBMC reference atlas 2) scRNA (filtered_feature_bc_matrix.h5)"
    ]
   },
   {
@@ -77,7 +85,7 @@
    "metadata": {},
    "outputs": [],
    "source": [
-    "# !wget \"https://www.dropbox.com/sh/omljmpqfguxlxs1/AACAanCUhqzOy0EmUKN4XdrZa?dl=1\""
+    "# !wget -O PBMC10k_multiome_vPBMCatlas.zip \"https://www.dropbox.com/s/3g63m832mbeec4s/PBMC10k_multiome_vPBMCatlas.zip?dl=1\""
    ]
   },
   {
@@ -85,7 +93,7 @@
    "id": "9fcc66d6",
    "metadata": {},
    "source": [
-    "We load reference atlas data and query data. Reference atlas is stored as h5ad AnnData in the data directory; query data is imported as MTX and TSV files from QuickATAC output."
+    "We load reference atlas data and query data. Reference atlas is stored as h5ad AnnData in the data directory; query data is imported from QuickATAC output."
    ]
   },
   {
@@ -103,7 +111,7 @@
     "\n",
     "reference_data_path = \"data/Reference/PBMC_reference_atlas_final.h5ad\"\n",
     "reference_data = scATAnno_preprocess.load_reference_data(reference_data_path)\n",
-    "query_data = scATAnno_preprocess.import_query_data(path = 'data/PBMC10k_multiome_vPBMCatlas/',\n",
+    "query_data = scATAnno_preprocess.import_query_data(path = 'data/PBMC10k_multiome_vPBMCatlas/scATAC/',\n",
     "                                    mtx_file = 'matrix.mtx.gz',\n",
     "                                    cells_file = 'barcodes.tsv.gz',\n",
     "                                    features_file = 'features.tsv.gz', \n",
@@ -448,7 +456,7 @@
    "id": "0fa62e52",
    "metadata": {},
    "source": [
-    "We benchmark scATAnno results with seurat annotation. "
+    "We benchmark scATAnno results with seurat annotation. Seurat annotation is stored in \"Seurat_RNA_annotation.csv\""
    ]
   },
   {

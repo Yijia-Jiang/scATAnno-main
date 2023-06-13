@@ -22,7 +22,8 @@
         <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" /> 
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="TNBC sample" href="demo_TNBC.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -60,9 +61,19 @@
 <li class="toctree-l1"><a class="reference internal" href="../algorithm.html#cell-type-assignment">Cell-type Assignment</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../tutorials.html">Case Study Datasets</a></li>
-<li class="toctree-l1"><a class="reference internal" href="index.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../process_query.html">Process Query Datasets</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Tutorials</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="demo_PBMC10K_Multiome.html">PBMC10K Multiome</a></li>
+<li class="toctree-l2"><a class="reference internal" href="demo_TNBC.html">TNBC sample</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">BCC Multiple Samples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#Part-I:-First-round-annotation---Apply-Healthy-Adult-reference-atlas-to-BCC-tumor-samples">Part I: First round annotation - Apply Healthy Adult reference atlas to BCC tumor samples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Part-II:-Second-round-annotation---Apply-BCC-TIL-reference-atlas-to-BCC-immune-cells">Part II: Second round annotation - Apply BCC TIL reference atlas to BCC immune cells</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 
         </div>
@@ -79,6 +90,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">Tutorials</a> &raquo;</li>
       <li>BCC Multiple Samples</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/tutorials/demo_BCC_multiple_samples.ipynb.txt" rel="nofollow"> View page source</a>
@@ -127,25 +139,25 @@
 </div>
 <section id="Part-I:-First-round-annotation---Apply-Healthy-Adult-reference-atlas-to-BCC-tumor-samples">
 <h2>Part I: First round annotation - Apply Healthy Adult reference atlas to BCC tumor samples<a class="headerlink" href="#Part-I:-First-round-annotation---Apply-Healthy-Adult-reference-atlas-to-BCC-tumor-samples" title="Permalink to this heading"></a></h2>
+<p>We first apply healthy adult reference atlas to two BCC samples. We load reference atlas data and BCC query data with healthy adult reference peak as feature input. Reference atlas is stored as h5ad AnnData in the data directory; query data is imported as MTX and TSV files from QuickATAC output.</p>
 <p>Download reference data</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># !wget &quot;https://www.dropbox.com/s/3ezp2t6gw6hw21v/Healthy_Adult_reference_atlas.h5ad?dl=1&quot;</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># !wget -O Healthy_Adult_reference_atlas.h5ad &quot;https://www.dropbox.com/s/3ezp2t6gw6hw21v/Healthy_Adult_reference_atlas.h5ad?dl=1&quot;</span>
 </pre></div>
 </div>
 </div>
-<p>Download query data</p>
+<p>Download query data. Each BCC sample has two features, one aligned with Healthy adult reference peak, and the other aligned with BCC TIL reference peak.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># !wget &quot;https://www.dropbox.com/sh/dwn0ynon4bzzj4t/AAB8ei6223oIWC14ry_lNdSma?dl=1&quot;</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># !wget -O BCC_samples.zip &quot;https://www.dropbox.com/s/eqkmt5trp3350cj/BCC_samples.zip?dl=1&quot;</span>
 </pre></div>
 </div>
 </div>
-<p>We first apply healthy adult reference atlas to two BCC samples. We load reference atlas data and BCC query data with healthy adult reference peak as feature input. Reference atlas is stored as h5ad AnnData in the data directory; query data is imported as MTX and TSV files from QuickATAC output.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
@@ -1907,7 +1919,9 @@ WARNING: The title list is shorter than the number of panels. Using &#39;color&#
 
            </div>
           </div>
-          <footer>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="demo_TNBC.html" class="btn btn-neutral float-left" title="TNBC sample" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
 
   <hr/>
 

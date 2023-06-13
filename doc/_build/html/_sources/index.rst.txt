@@ -62,5 +62,5 @@ The documentation is organized into the following sections:
   :caption: Tutorials
 
   tutorials.rst
-
+  process_query.rst
   tutorials/index

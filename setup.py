@@ -1,12 +1,13 @@
 from setuptools import setup
 
 setup(
-    name='scATAnno-main',
-    version='1.0',
+    name='scATAnno',
+    version='1.0.1',
     packages=['scATAnno'],
     url='https://github.com/aj088/scATAnno-main/',
     license='',
     author='Yijia Jiang',
     author_email='yijia_jiang@dfci.harvard.edu',
-    description=''
+    description='',
+    install_requires=['pandas','scanpy','anndata','matplotlib','adjustText', 'leidenalg', 'harmonypy', 'scipy','seaborn'],
 )
