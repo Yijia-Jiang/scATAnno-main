@@ -2,7 +2,14 @@ Installation
 ===================
 Instruction of Installation
 
-Install scATAnno through github
+Install through pip
+------------------------------------
+::
+
+    pip install scATAnno
+
+
+Install through github
 ------------------------------------
 
 Clone the source code repository and go to the scATAnno-main directory,
