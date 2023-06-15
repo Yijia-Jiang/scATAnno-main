@@ -17,7 +17,7 @@ use `pip install . ` to install the package.
 
 ::
 
-    git clone git clone https://github.com/aj088/scATAnno-main.git
+    git clone https://github.com/Yijia-Jiang/scATAnno-main.git
     cd scATAnno-main
     pip install .
 
