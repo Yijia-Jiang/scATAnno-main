@@ -296,8 +296,14 @@ def _distance_filter(query, weight_df,umap_centroid_spectral,reference_total_dis
 
     Parameters
     ----------
-    prediction_col: query celltype column to perform secondpass filtering and annotation
+    query: query AnnData
+    weight_df: a data frame of weights for cell types
+    umap_centroid_spectral: spectral embedding of the UMAP centroid
+    reference_total_dists: within-reference cell type distance of cell types
+    use_rep: column where low dimensional embeddings stored
     percent_threshold: query distance cutoff for celltye assignment
+    prediction_col: query celltype column to perform secondpass filtering and annotation
+    ndim: number of low dimensions, default is 30
     """
     percent_threshold = percent_threshold
     # compute corrected predictions using weighted distance
@@ -326,16 +332,21 @@ def _distance_filter(query, weight_df,umap_centroid_spectral,reference_total_dis
     query.obs["uncertainty_score_step2"] = corrected_uncertainty
     return query
 
-def distance_filter(reference, query, reference_label_col, outlier_umap_cutoff=90,use_rep = "X_spectral_harmony",  prediction_col='pred_y',  ndim = 30, percent_threshold = 95, draw_dist = False):
+def distance_filter(reference, query, reference_label_col, outlier_umap_cutoff=90, use_rep = "X_spectral_harmony",  prediction_col='pred_y',  ndim = 30, percent_threshold = 95, draw_dist = False):
     """
     Return reference atlas removed outliers, weights of spectral embedding, and secondPass annotation of query data
 
     Parameters
     ----------
+    reference: reference AnnData
+    query: query AnnData
     reference_label_col: reference celltype column to generate embedding weights
     outlier_umap_cutoff: reference umap cutoff to remove outliers
+    use_rep: column where low dimensional embeddings stored
     prediction_col: query predicted celltype column to perform annotation
+    ndim: number of low dimensions, default is 30
     percent_threshold: query distance cutoff for celltye assignment
+    draw_dist: default set to False and return clean reference, weights and query; if true, return all intermediate results 
     """
     # 1. remove outlier cells in reference data based on umap
     reference_clean, umap_centroid_cellname, umap_centroid_index, umap_centroid_spectral = remove_outliers(reference, outlier_umap_cutoff = outlier_umap_cutoff,use_rep=use_rep,variable_col=reference_label_col,ndim = ndim )
@@ -383,6 +394,7 @@ def assign_final_cell_type(query, threshold, atlas, predicted_variable = "pred_y
 
     Parameters
     ----------
+    query: query AnnData
     threshold: threshold for uncertainty score and detect unknown cells
     predicted_variable: assignment from KNN
     u1_variable: uncertainty score fron KNN first step
@@ -469,8 +481,10 @@ def scATAnno_cluster_assign(query, use_rep, cluster_col=None, UMAP=True, leiden_
     Parameters
     ----------
     query: anndata of query cells
-    cluster_col: if None, automatically cluster by leiden algorithm; otherwise, leiden cluster and then input cluster column name
-    UMAP: if True, redo UMAP for query data; else, do not change UMAP
+    use_rep: column where low dimensional embeddings stored
+    cluster_col: if None, automatically cluster cells by Leiden algorithm; otherwise, cluster_col should be the column of provided cluster information
+    UMAP: default is True. If True, project query data into a new UMAP space; if False, query cells remain in integrated UMAP space
+    leiden_resolution: resolution to determine Leiden cluster numbers, default is 3
     """
     query_only_newUMAP = query.copy()
     if UMAP:
@@ -500,8 +514,11 @@ def scATAnno_annotate(reference, query, reference_label_col, atlas, distance_thr
     atlas: selection of reference atlas
     distance_threshold: threshold for weighted distance filtering 
     uncertainty_threshold: final uncertainty score threshold
-    cluster_col: if None, automatically cluster by leiden algorithm; otherwise, leiden cluster and then input cluster column name
-    UMAP: if True, redo UMAP for query data; else, do not change UMAP
+    cluster_col: if None, automatically cluster cells by Leiden algorithm; otherwise, cluster_col should be the column of provided cluster information
+    UMAP: default is True. If True, project query data into a new UMAP space; if False, query cells remain in integrated UMAP space
+    leiden_resolution: resolution to determine Leiden cluster numbers, default is 3
+    use_rep: column where low dimensional embeddings stored
+    knn_neighbors: number of K nearest neighbors, default is 30
     prediction_col: predicted celltype column from KNN raw assignment for query data
     """
     query_KNN = scATAnno_KNN_assign(reference, query, reference_label_col=reference_label_col, low_dim_col=use_rep, knn_neighbors=knn_neighbors, in_place=True)
