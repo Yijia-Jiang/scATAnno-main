@@ -23,6 +23,7 @@ from scATAnno.SnapATAC2_tools import *
 from scATAnno.scATAnno_preprocess import *
 from scATAnno.scATAnno_integration import *
 
+# Only use this version on server
 
 ######## Functions for KNN assignment ########
 def KNN_classifier(reference, query, low_dim_col, n_neighbors, celltype_col):
@@ -74,7 +75,9 @@ def raw_assignment(K, neighbors_labels):
         u = 1 - p
         pred_y = u.index[np.argmin(u)]
         prediction.append(pred_y)
-        uncertainty.append(np.min(u).values[0])
+        # Only use this version on server
+        # uncertainty.append(np.min(u).values[0])
+        uncertainty.append(np.min(u))
     return prediction, uncertainty
 
 
