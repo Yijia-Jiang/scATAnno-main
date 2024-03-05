@@ -12,7 +12,7 @@ Install scATAnno through pip:
     
 Install scATAnno through github:
 
-    $ git clone https://github.com/aj088/scATAnno-main.git
+    $ git clone https://github.com/Yijia-Jiang/scATAnno-main.git
     $ cd scATAnno-main
     $ pip install .
 
