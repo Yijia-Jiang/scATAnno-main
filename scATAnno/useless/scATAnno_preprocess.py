@@ -10,10 +10,6 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 sns.set_theme(style='white')
 
-from scipy.sparse import csr_matrix
-from scipy import sparse
-import scipy.io
-
 def h5ad2mtx(infile_path, out_dir):
     """convert the H5AD Anndata into MTX and TSV files
     Parameters
@@ -23,7 +19,6 @@ def h5ad2mtx(infile_path, out_dir):
     Returns
     -------
     """
-    
     anndata = sc.read_h5ad(infile_path)
     X = csr_matrix(anndata.X)
     if scipy.sparse.isspmatrix(X) ==True:
@@ -118,26 +113,6 @@ def add_variable(variable_file, adata, variable_col="X_spectral_harmony"):
         return adata
     else: raise ValueError("file does not exist")
 
-def load_integrated_adata(out_dir, merge_file_key = "*Merged_query_reference.h5ad"):
-    """load integrated AnnData.
-    Parameters
-    ----------
-    path: directory that includes "Merged_query_reference" object and "X_spectral" dataframe
-    Returns a AnnData object
-    -------
-    """
-    import glob
-    input_file = glob.glob(out_dir+os.sep+merge_file_key)
-    input_spectral_file = glob.glob(out_dir+os.sep+"X_spectral_harmony.csv")
-    input_file.extend(input_spectral_file)
-    input_spectral_file2 = glob.glob(out_dir+os.sep+"X_spectral.csv")
-    input_file.extend(input_spectral_file2)
-    
-    integrated_adata = sc.read_h5ad(os.path.join(input_file[0]))
-    integrated_adata = add_variable(input_file[1], integrated_adata, variable_col="X_spectral_harmony")
-    integrated_adata = add_variable(input_file[2], integrated_adata, variable_col="X_spectral")
-
-    return integrated_adata
 
 
 
