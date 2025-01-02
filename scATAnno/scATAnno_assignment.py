@@ -25,6 +25,7 @@ from scATAnno.scATAnno_integration import *
 
 # Only use this version on server
 
+
 ######## Functions for KNN assignment ########
 def KNN_classifier(reference, query, low_dim_col, n_neighbors, celltype_col):
     """
