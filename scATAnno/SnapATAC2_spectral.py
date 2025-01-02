@@ -26,7 +26,7 @@ import scipy.sparse as ss
 from anndata import AnnData
 from anndata.experimental import AnnCollection
 import math
-
+import pickle
 def read_as_binarized(adata: ad.AnnData) -> ss.spmatrix:
     grp = adata.file["X"]
     mtx = ss.csr_matrix(adata.shape, dtype=np.float64)
@@ -107,12 +107,16 @@ def binarize_inplace(X):
 
     
 def select_features(
+    feature_file,
     adata: Union[ad.AnnData, AnnCollection],
     variable_feature: bool = True,
     whitelist: Optional[str] = None,
     blacklist: Optional[str] = None,
     inplace: bool = True,
+    feature_threshold = 1.65,
+    ablate_type = 'none'
 ) -> Optional[np.ndarray]:
+    #print(f"critical value in spectral is  {critical_value}" )
     """
     Perform feature selection.
 
@@ -153,12 +157,181 @@ def select_features(
     if variable_feature:
         mean = count[selected_features].mean()
         std = math.sqrt(count[selected_features].var())
-        selected_features &= np.absolute((count - mean) / std) < 1.65
-
+        z_scores = np.absolute((count - mean) / std)
+        #critical_value = np.median(z_scores[selected_features])
+        selected_features &= np.absolute((count - mean) / std) < feature_threshold
+        print(f"Number of selected features: {selected_features.sum()}") 
+        np.savetxt(feature_file, selected_features.astype(int), delimiter=',')
     if inplace:
         adata.var["selected"] = selected_features
     else:
         return selected_features
+
+
+
+def spectral_reference_embedding(
+    model_file,
+    data: ad.AnnData,
+    n_comps: Optional[int] = None,
+    features: Optional[Union[str, np.ndarray]] = "selected",
+    random_state: int = 0,
+    sample_size: Optional[Union[int, float]] = None,
+    chunk_size: Optional[int] = None,
+    distance_metric: str = "jaccard",
+    inplace: bool = True,
+    ablate_type = 'none',
+    reference_size = 1000
+) -> Optional[np.ndarray]:
+    print(f"the refence size is {reference_size}")
+    """
+        # Basic structure information
+    print("Data type:", type(data))
+    print("Data shape:", data.shape)
+    print("Available annotations:", dir(data))
+
+    # Observation annotations
+    if hasattr(data, 'obs'):
+        print("\nObservation annotations:")
+        print("Columns:", data.obs.columns.tolist())
+        print("\nHead of obs:")
+        print(data.obs.head())
+        print("\nTail of obs:")
+        print(data.obs.tail())
+
+    # Variable annotations (if any)
+    if hasattr(data, 'var'):
+        print("\nVariable annotations:")
+        print("Columns:", data.var.columns.tolist())
+        print("\nHead of var:")
+        print(data.var.head())
+        print("\nTail of var:")
+        print(data.var.tail())
+
+    # Unstructured annotations
+    if hasattr(data, 'uns'):
+        print("\nUnstructured annotations keys:", list(data.uns.keys()))
+
+    # If obsm exists (observation matrices)
+    if hasattr(data, 'obsm'):
+        print("\nObservation matrices keys:", list(data.obsm.keys()))
+        for key in data.obsm.keys():
+            print(f"\nHead of obsm['{key}']:")
+            print(data.obsm[key][:5])
+
+    # If layers exist
+    if hasattr(data, 'layers'):
+        print("\nLayers:", list(data.layers.keys()))
+    """
+    if isinstance(features, str):
+        if features in data.var:
+            features = data.var[features]
+        else:
+            raise NameError("Please call `select_features` first or explicitly set `features = None`")
+
+    np.random.seed(random_state)
+    if n_comps is None:
+        min_dim = min(data.n_vars, data.n_obs)
+        if 50 >= min_dim:
+            n_comps = min_dim - 1
+        else:
+            n_comps = 50
+    if chunk_size is None: chunk_size = 20000
+
+    (n_sample, _) = data.shape
+    ##### checked 
+    if sample_size is None:
+        sample_size = n_sample
+    elif isinstance(sample_size, int):
+        if sample_size <= 1:
+            raise ValueError("when sample_size is an integer, it should be > 1")
+        if sample_size > n_sample:
+            sample_size = n_sample
+    else:
+        if sample_size <= 0.0 or sample_size > 1.0:
+            raise ValueError("when sample_size is a float, it should be > 0 and <= 1")
+        else:
+            sample_size = int(sample_size * n_sample) 
+
+    if sample_size >= n_sample: # sample size is entire sample
+        if isinstance(data, AnnCollection):
+            X, _ = next(data.iterate_axis(n_sample))
+            X = X.X[...]
+            if distance_metric == "jaccard":
+                X.data = np.ones(X.indices.shape, dtype=np.float64)
+        elif isinstance(data, ad.AnnData):
+            if data.isbacked and data.is_view:
+                    inplace_init_view_as_actual(data)
+            X = data.X[...]
+            if distance_metric == "jaccard":
+                X.data = np.ones(X.indices.shape, dtype=np.float64)
+        else:
+            raise ValueError("input should be AnnData or AnnCollection")
+
+        if features is not None: X = X[:, features]
+
+        model = Spectral(n_dim=n_comps, distance=distance_metric)
+        model.fit(X)
+        result = model.transform() # save reference results 
+    
+    else: # if there is subsample
+        if isinstance(data, AnnCollection):
+            # Fix sample indices to 0:22200
+            # need to fix axis 
+            #S, sample_indices = next(data.iterate_axis(sample_size, shuffle=True))
+            #S = data[data.obs['dataset'] == 'Atlas']  # Filter to keep only Atlas dataset
+            np.random.seed(1)
+            #S = data[data.obs['dataset'] == 'Atlas'].iloc[np.random.choice(data[data.obs['dataset'] == 'Atlas'].shape[0], size=25000, replace=False)]
+            atlas_indices = np.where(data.obs['dataset'] == 'Atlas')[0]
+            #selected_indices = np.random.choice(atlas_indices, size=1000, replace=False)
+            selected_indices = atlas_indices[:reference_size]
+            S = data[selected_indices]
+
+            atlas_size = S.shape[0]  # Get number of rows in filtered data
+            print(f"Number of Atlas samples: {atlas_size}")
+            S = S.X[...]
+            if distance_metric == "jaccard":
+                S.data = np.ones(S.indices.shape, dtype=np.float64)
+            chunk_iterator = map(lambda b: b[0].X[...], data.iterate_axis(chunk_size))
+        elif isinstance(data, ad.AnnData):
+            if distance_metric == "jaccard":
+                S = binarized_chunk_X(data, select=sample_size, replace=False) # resample density distribution?
+            else:
+                S = ad.chunk_X(data, select=sample_size, replace=False)
+            chunk_iterator = map(lambda b: b[0], data.chunked_X(chunk_size))
+        else:
+            raise ValueError("input should be AnnData or AnnCollection")
+
+        if features is not None: S = S[:, features]
+
+        model = Spectral(n_dim=n_comps, distance=distance_metric) # construct and save model
+        model.fit(S)   # fix reference; save model as object
+
+        from tqdm import tqdm # show progression bar
+        import math
+        print("Perform Nystrom extension")
+        print("Batch(S) shape:", S.shape)
+        model.extend(S)
+        import pickle
+        #f'/home/yj976/scATAnno_benchmark/benchmark_scATAnno/model/model_test_full_{ablate_type}_CI_test'
+        with open( model_file, 'wb') as f:
+            pickle.dump(model, f)
+        print(f"model has been imported at  {model_file}")
+        return
+        """
+        for batch in tqdm(chunk_iterator, total = math.ceil(n_sample / chunk_size)): # n_sample = 22200; chunk_size = 20000
+            if distance_metric == "jaccard":
+                batch.data = np.ones(batch.indices.shape, dtype=np.float64)
+            if features is not None: batch = batch[:, features]
+            model.extend(batch) # input query as batch 
+        """
+        result = model.transform() # result[0] evals; result[1] evecs # save results
+    
+    if inplace:
+        data.uns['spectral_eigenvalue'] = result[0]
+        data.obsm['X_spectral'] = result[1]
+    else:
+        return result
+
 
 def spectral(
     data: ad.AnnData,
