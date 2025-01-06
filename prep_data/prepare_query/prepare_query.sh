@@ -1,12 +1,12 @@
 # To run build_reference.sh, you need to change:
-# 5 file paths below.
+# 4 file paths below (reference_peak_bed, frag_path, barcode_path, output_path).
 
 reference_peak_bed=/mnt/cfce-rcsm/projects/nibr_pbmc/scATAC/ref_peak_count_matrix/peaks.bed
 frag_path=/mnt/cfce-rcsm/projects/nibr_pbmc/yi-zhang/nibr_multiome/data/sample4/atac_fragments.tsv.gz
 barcode_path=/mnt/cfce-rcsm/projects/nibr_pbmc/yi-zhang/nibr_multiome/data/sample4/filtered_feature_bc_matrix/barcodes.tsv
-hg38chromsize=/mnt/cfce-rcsm/projects/nibr_pbmc/scATAC/ref_peak_count_matrix/counts/peak-count-matrix-macs2/hg38.chrom.sizes.txt
-
 output_path=/home/yj976/scATAnno_benchmark/prepare_query_cells
+
+hg38chromsize=/mnt/cfce-rcsm/projects/nibr_pbmc/scATAC/ref_peak_count_matrix/counts/peak-count-matrix-macs2/hg38.chrom.sizes.txt
 
 
 
