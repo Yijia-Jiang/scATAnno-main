@@ -51,6 +51,8 @@ The documentation is organized into the following sections:
 
    workflow_details2.rst
 
+   process_query.rst
+
 .. toctree::
    :maxdepth: 2
    :caption: Algorithms
