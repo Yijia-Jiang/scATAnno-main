@@ -1,5 +1,5 @@
 # To run build_reference.sh, you need to change:
-# 3 file paths below, 
+# 3 file paths below (output_path, frag_path, barcode_path), 
 # The location of package MACS2 (in section 1).
 
 output_path=/home/yj976/scATAnno_benchmark/reference_build
