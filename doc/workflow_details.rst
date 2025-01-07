@@ -1,5 +1,11 @@
 Prepare Reference Atlas
 ===========================
+How to Build a Reference
+---------------------------------
+- dirctory of the code
+- input files
+- command to create the reference
+- succssful message (copy)
 
 Healthy Adult Reference Atlas
 ---------------------------------
