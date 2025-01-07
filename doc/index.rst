@@ -47,9 +47,9 @@ The documentation is organized into the following sections:
    :maxdepth: 2
    :caption: Workflow Details
 
-   workflow_details.rst
-
    workflow_details2.rst
+
+   workflow_details.rst
 
    process_query.rst
 
