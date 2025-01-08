@@ -7,6 +7,13 @@ How to Build a Reference
 prep_data/scATAnno-reference-building-example
 
 - input files
+
+build_reference.sh
+
+generate_atlas.py  
+
+prepare_files.py
+
 - command to create the reference
 ::
 
