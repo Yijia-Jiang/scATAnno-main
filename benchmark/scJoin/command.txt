@@ -1,1 +1,13 @@
+Remember to change the directory in:
+6.matrix_to_h5_big_pbmc_query1k.R
+7.h5_to_npz_big_pbmc_query1k.py
+config.py
 
+Step1: 
+Rscript 6.matrix_to_h5_big_pbmc_query1k.R
+
+Step2:
+python 7.h5_to_npz_big_pbmc_query1k.py
+
+Step3:
+python3 scJoint/main.py 
