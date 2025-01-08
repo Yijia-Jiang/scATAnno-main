@@ -1,0 +1,4 @@
+Change the elements in "": 
+  
+Cellcano predict -i "ArchR_genescore" --trained_model "immunePBMC_all_trainedMLP_model" -o "Cellcano_output" --prefix  PBMC
+
