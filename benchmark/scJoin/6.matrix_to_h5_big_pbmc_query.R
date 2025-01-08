@@ -3,20 +3,10 @@ library(tidyverse)
 library(rhdf5)
 library(HDF5Array)
 
-#args <- commandArgs(trailingOnly = TRUE)
-#knum <- as.numeric(args[1])
-outputpath <- "/home/yj976/scATAnno_benchmark/benchmark_scJoin/8.results_big_pbmc_query1k"
-#outputpath <- paste0("/home/yj976/scATAnno_benchmark/benchmark_scJoin/8.results_big_pbmc_query", knum)
-genes_atac <- readRDS("/home/yj976/scATAnno_benchmark/pbmc_big_query/pbmc_bigquery_atac_genescore_perfect.rds")
 
+outputpath <- "scATAnno_benchmark/benchmark_scJoin/8.results_big_pbmc_query1k"
 
-#atac_dir <- '/home/yj976/scATAnno_benchmark/pbmc_big_query'
-
-#genes_atac <- ReadMtx(file.path(atac_dir, "ArchR_genescore.mtx.gz"),
-#                      cells = file.path(atac_dir, "ArchR_genescore_barcodes.tsv"),
-#                      features = file.path(atac_dir, "ArchR_genescore_genes.tsv"), feature.column =1)
-
-genes_atac <- genes_atac[,1:1000]
+genes_atac <- readRDS("pbmc_bigquery_atac_genescore_perfect.rds")
 
 #' This function will generate h5 files for a list expression matrices as input of process_db.py file
 #'
@@ -71,8 +61,7 @@ write_csv_scJoint <- function(cellType_list, csv_list) {
 
 
 #Following is reference never need to change!
-rna_dir <- '/home/yj976/scATAnno_benchmark/data_input_Reference'
-
+rna_dir <- 'scATAnno_benchmark/data_input_Reference'
 target_mat <- ReadMtx(file.path(rna_dir, "gene_activity_score_ArchR/ArchR_genescore.mtx.gz"),
                       cells = file.path(rna_dir, "gene_activity_score_ArchR/ArchR_genescore_barcodes.tsv"),
                       features = file.path(rna_dir, "gene_activity_score_ArchR/ArchR_genescore_genes.tsv"), feature.column =1)
