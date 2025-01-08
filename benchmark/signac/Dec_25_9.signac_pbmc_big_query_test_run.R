@@ -1,5 +1,5 @@
 # Set output directory
-output_dir <- "scATAnno_benchmark/benchmark_signac/10.signac_pbmc_big_query_results1k"
+output_dir <- "benchmark_signac"
 # Create directory if it doesn't exist
 dir.create(output_dir, showWarnings = FALSE, recursive = TRUE)
 
@@ -11,8 +11,9 @@ set.seed(1234)
 
 # Input paths remain the same
 mat_dir_input <- "/counts"
-reference <- LoadH5Seurat("signac/pbmc_multimodal.h5seurat")
-FragPath <- file.path("counts/peak-count-matrix-macs2", "fragments.tsv.gz")
+reference <- LoadH5Seurat("pbmc_multimodal.h5seurat")
+#add drop box link
+FragPath <- "fragments.tsv.gz"
 
 # Process scATAC data
 PBMC_10x_mat <- ReadMtx(
