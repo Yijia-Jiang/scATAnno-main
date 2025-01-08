@@ -5,7 +5,7 @@ Process Query Datasets
 Example of generating BCC query count matrix
 
 Input file requires:
-- "bedfile" reference peaks bed file (dropbox link)
+- "bedfile" reference peaks bed file (dropbox link) \n
 - "spikein" a spikein file to retain all reference peaks as features in the final matrix (dropbox)
 - chrom_size_file hg38 chromsome size file, provided by QuickATAC
 - sample_directory: directory where sample fragment file and cell barcodes are stored
