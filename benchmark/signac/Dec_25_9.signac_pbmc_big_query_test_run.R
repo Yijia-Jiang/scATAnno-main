@@ -1,5 +1,5 @@
 # Set output directory
-output_dir <- "/home/yj976/scATAnno_benchmark/benchmark_signac/10.signac_pbmc_big_query_results1k"
+output_dir <- "scATAnno_benchmark/benchmark_signac/10.signac_pbmc_big_query_results1k"
 # Create directory if it doesn't exist
 dir.create(output_dir, showWarnings = FALSE, recursive = TRUE)
 
@@ -11,8 +11,8 @@ set.seed(1234)
 
 # Input paths remain the same
 mat_dir_input <- "/counts"
-
-FragPath <- file.path("/mnt/cfce-rcsm/projects/nibr_pbmc/scATAC/ref_peak_count_matrix/counts/peak-count-matrix-macs2", "fragments.tsv.gz")
+reference <- LoadH5Seurat("signac/pbmc_multimodal.h5seurat")
+FragPath <- file.path("counts/peak-count-matrix-macs2", "fragments.tsv.gz")
 
 # Process scATAC data
 PBMC_10x_mat <- ReadMtx(
@@ -54,7 +54,7 @@ saveRDS(pbmc, file.path(output_dir, "run_pbmc_raw.rds"))
 
 # Annotation
 library(SeuratDisk)
-reference <- LoadH5Seurat("/mnt/cfce-rcsm/homes/yj976/projects/benchmark_scATAC/signac/pbmc_multimodal.h5seurat")
+
 
 pbmc[['RNA']] <- CreateAssayObject(counts = gene.activities)
 DefaultAssay(pbmc) <- 'RNA'
