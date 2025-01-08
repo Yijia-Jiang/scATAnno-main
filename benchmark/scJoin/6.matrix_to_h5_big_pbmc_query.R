@@ -4,7 +4,7 @@ library(rhdf5)
 library(HDF5Array)
 
 
-outputpath <- "scATAnno_benchmark/benchmark_scJoin/8.results_big_pbmc_query1k"
+outputpath <- "benchmark_scJoin"
 
 genes_atac <- readRDS("pbmc_bigquery_atac_genescore_perfect.rds")
 
@@ -61,10 +61,10 @@ write_csv_scJoint <- function(cellType_list, csv_list) {
 
 
 #Following is reference never need to change!
-rna_dir <- 'scATAnno_benchmark/data_input_Reference'
-target_mat <- ReadMtx(file.path(rna_dir, "gene_activity_score_ArchR/ArchR_genescore.mtx.gz"),
-                      cells = file.path(rna_dir, "gene_activity_score_ArchR/ArchR_genescore_barcodes.tsv"),
-                      features = file.path(rna_dir, "gene_activity_score_ArchR/ArchR_genescore_genes.tsv"), feature.column =1)
+
+target_mat <- ReadMtx(file.path("gene_activity_score_ArchR/ArchR_genescore.mtx.gz"),
+                      cells = file.path("gene_activity_score_ArchR/ArchR_genescore_barcodes.tsv"),
+                      features = file.path("gene_activity_score_ArchR/ArchR_genescore_genes.tsv"), feature.column =1)
 
 df <- read.csv(file.path(rna_dir,"ref_meta_major.csv"))
 rownames(df) <- df$X
