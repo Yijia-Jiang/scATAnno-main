@@ -3,6 +3,9 @@ Prepare Reference Atlas
 How to Build a Reference
 ---------------------------------
 - dirctory of the code
+
+prep_data/scATAnno-reference-building-example
+
 - input files
 - command to create the reference
 ::
