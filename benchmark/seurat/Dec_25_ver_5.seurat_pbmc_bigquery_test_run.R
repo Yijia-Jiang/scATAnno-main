@@ -9,7 +9,7 @@ set.seed(1234)
 
 
 target_mat <- readRDS("pbmc_bigquery_atac_genescore_perfect.rds")
-
+reference <- LoadH5Seurat("pbmc_multimodal.h5seurat")
 
 ############ Annotation ############
 library(SeuratDisk)
@@ -28,7 +28,7 @@ pbmc <- SCTransform(pbmc)
 pbmc <- RunPCA(pbmc)
 
 
-reference <- LoadH5Seurat("/home/yj976/scATAnno_benchmark/benchmark_seurat/pbmc_multimodal.h5seurat")
+
 
 DefaultAssay(pbmc) <- 'SCT'
 transfer_anchors <- FindTransferAnchors(
@@ -51,6 +51,6 @@ df1 <- predictions["predicted.id"]
 head(df1)
 colnames(df1) <- c("seurat_celltype")
 
-out_dir <- "/home/yj976/scATAnno_benchmark/benchmark_seurat/7.seurat_bigquery_result"
+out_dir <- "scATAnno_benchmark/benchmark_seurat/7.seurat_bigquery_result"
 write.csv(df1, file.path(out_dir, "seurat_celltype1k.csv"),quote = F)
 
