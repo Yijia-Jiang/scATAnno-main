@@ -6,6 +6,9 @@ How to Build a Reference
 - input files
 - command to create the reference
 ::
+
+    pip install scATAnno
+::
     # Command line: callpeak -f BEDPE -g hs --nomodel --extsize 50 --keep-dup all -q 0.1 -t /mnt/cfce-rcsm/projects/nibr_pbmc/yi-zhang/nibr_multiome/data/sample4/atac_fragments.tsv.gz -n macs2
 
 - succssful message (copy)
