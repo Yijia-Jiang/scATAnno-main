@@ -51,6 +51,6 @@ df1 <- predictions["predicted.id"]
 head(df1)
 colnames(df1) <- c("seurat_celltype")
 
-out_dir <- "scATAnno_benchmark/benchmark_seurat/7.seurat_bigquery_result"
+out_dir <- "benchmark_seurat"
 write.csv(df1, file.path(out_dir, "seurat_celltype1k.csv"),quote = F)
 
