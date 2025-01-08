@@ -1,4 +1,4 @@
-Change the elements in "": 
+Change the elements in "" to your directories: 
   
 Cellcano predict -i "ArchR_genescore" --trained_model "immunePBMC_all_trainedMLP_model" -o "Cellcano_output" --prefix  PBMC
 
