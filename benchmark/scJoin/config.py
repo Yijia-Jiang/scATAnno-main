@@ -16,14 +16,9 @@ class Config(object):
             # DB info
             self.number_of_class = 6 # Number of cell type in reference
             self.input_size = 22006 # Number of common genes
-            self.rna_paths = ['/home/yj976/scATAnno_benchmark/benchmark_scJoin/8.results_big_pbmc_query1k/1.exprs_4repPBMC_rna.npz']
-            self.rna_labels = ['/home/yj976/scATAnno_benchmark/benchmark_scJoin/8.results_big_pbmc_query1k/1.cellType_PBMC_rna.txt']		
-            self.atac_paths = ['/home/yj976/scATAnno_benchmark/benchmark_scJoin/8.results_big_pbmc_query1k/1.exprs_PBMC_facs_query.npz']
-
-#            self.rna_paths = ['/home/yj976/scATAnno_benchmark/benchmark_scJoin/scJoint/data_10x/exprs_10xPBMC_rna.npz']
-#            self.rna_labels = ['/home/yj976/scATAnno_benchmark/benchmark_scJoin/scJoint/data_10x/cellType_10xPBMC_rna.txt']
-#            self.atac_paths = ['/home/yj976/scATAnno_benchmark/benchmark_scJoin/scJoint/data_10x/exprs_10xPBMC_atac.npz']
-
+            self.rna_paths = ['scATAnno_benchmark/benchmark_scJoin/8.results_big_pbmc_query1k/1.exprs_4repPBMC_rna.npz']
+            self.rna_labels = ['scATAnno_benchmark/benchmark_scJoin/8.results_big_pbmc_query1k/1.cellType_PBMC_rna.txt']		
+            self.atac_paths = ['scATAnno_benchmark/benchmark_scJoin/8.results_big_pbmc_query1k/1.exprs_PBMC_facs_query.npz']
 
             self.atac_labels = [] #Optional. If atac_labels are provided, accuracy after knn would be provided.
             self.rna_protein_paths = []
