@@ -17,11 +17,25 @@ prepare_files.py
 - command to create the reference
 ::
 
-    # Command line: callpeak -f BEDPE -g hs --nomodel --extsize 50 --keep-dup all -q 0.1 -t /mnt/cfce-rcsm/projects/nibr_pbmc/yi-zhang/nibr_multiome/data/sample4/atac_fragments.tsv.gz -n macs2
+    bash build_reference.sh
 
 - succssful message
 ::
-
+    INFO  @ Sun, 05 Jan 2025 02:47:40: 
+    # Command line: callpeak -f BEDPE -g hs --nomodel --extsize 50 --keep-dup all -q 0.1 -t /mnt/cfce-rcsm/projects/nibr_pbmc/yi-zhang/nibr_multiome/data/sample4/atac_fragments.tsv.gz -n macs2
+    # ARGUMENTS LIST:
+    # name = macs2
+    # format = BEDPE
+    # ChIP-seq file = ['/mnt/cfce-rcsm/projects/nibr_pbmc/yi-zhang/nibr_multiome/data/sample4/atac_fragments.tsv.gz']
+    # control file = None
+    # effective genome size = 2.70e+09
+    # band width = 300
+    # model fold = [5, 50]
+    # qvalue cutoff = 1.00e-01
+    # Larger dataset will be scaled towards smaller dataset.
+    # Range for calculating regional lambda is: 10000 bps
+    # Broad region calling is off
+    # Paired-End mode is on
     INFO  @ Sun, 05 Jan 2025 02:47:40: #1 read fragment files... 
     INFO  @ Sun, 05 Jan 2025 02:47:40: #1 read treatment fragments... 
     INFO  @ Sun, 05 Jan 2025 02:47:42:  1000000 
