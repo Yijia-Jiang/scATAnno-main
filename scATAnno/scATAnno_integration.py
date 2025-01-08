@@ -53,7 +53,7 @@ def scATAnno_query_projection(reference_data, query_data, feature_file, model_fi
 
     return data_c
 
-def scATAnno_integrate_reference_embedding(reference_data, query_data, feature_file, model_file, variable_prefix, dim = 30, sample_size = 10000, distance_metric = "jaccard",feature_threshold = 1.65,ablate_type = 'none'):
+def scATAnno_integrate_reference_embedding(reference_data, feature_file, model_file, variable_prefix, dim = 30, sample_size = 10000, distance_metric = "jaccard",feature_threshold = 1.65,ablate_type = 'none'):
     #print (f"critical_value in scATAnno_integrate{feature_threshold}")
     """
     Integrate a reference atlas and a query AnnData 
@@ -77,14 +77,14 @@ def scATAnno_integrate_reference_embedding(reference_data, query_data, feature_f
     Returns integrated AnnData
     -------
     """
-    if isinstance(reference_data, ad.AnnData) & isinstance(query_data, ad.AnnData):
+    if isinstance(reference_data, ad.AnnData): #& isinstance(query_data, ad.AnnData):
         reference_size = reference_data.shape[0]
         #select_features(query_data, critical_value = critical_value) 
         #print(f"critical value in integrate is{critical_value}")
-        select_features(feature_file, reference_data, feature_threshold= feature_threshold , ablate_type = ablate_type)
+        select_features_reference_only(feature_file, reference_data, feature_threshold= feature_threshold , ablate_type = ablate_type)
         datasets={}
         datasets["Atlas"] = reference_data
-        datasets[variable_prefix] = query_data
+        #datasets[variable_prefix] = query_data
         #datasets["Atlas"] = reference_data
         # Lazily concatenate AnnData objects along the obs axis
         data_c = AnnCollection(datasets,join_obs="inner", index_unique="_", label="dataset") # concatenate two adata by intersection of var 
