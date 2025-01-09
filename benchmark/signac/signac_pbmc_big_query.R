@@ -1,3 +1,12 @@
+# Download files from here: 
+
+# pbmc_multimodal.h5seurat:  https://www.dropbox.com/scl/fi/1k31dv2eifsptd451mtkj/pbmc_multimodal.h5seurat?rlkey=bv4tpibjhrv2koe67kawzs13a&st=pdebeid6&dl=0
+
+# fragment files: 
+#  https://www.dropbox.com/scl/fi/yakgpq7qzjincea9mthqd/fragments.tsv.gz.tbi?rlkey=6gn8lelusxdg9uon4z8z4gm7a&st=6lxgw64j&dl=0
+#  https://www.dropbox.com/scl/fi/ih1rszeywprtpsfyzizpj/fragments.tsv.gz?rlkey=k40aa5iq5nggbcown5z6kld4n&st=9nin1dj4&dl=0
+
+
 # Set output directory
 output_dir <- "benchmark_signac"
 # Create directory if it doesn't exist
@@ -11,6 +20,7 @@ set.seed(1234)
 
 # Input paths remain the same
 mat_dir_input <- "/counts"
+# Download from here: https://www.dropbox.com/scl/fi/1k31dv2eifsptd451mtkj/pbmc_multimodal.h5seurat?rlkey=bv4tpibjhrv2koe67kawzs13a&st=pdebeid6&dl=0
 reference <- LoadH5Seurat("pbmc_multimodal.h5seurat")
 #add drop box link
 FragPath <- "fragments.tsv.gz"
