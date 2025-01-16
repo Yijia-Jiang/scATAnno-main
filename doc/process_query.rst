@@ -1,57 +1,39 @@
 Process Query Datasets
 ===================
 
+---------------------------------
+- Code used for process query datasets
 
-Example of generating BCC query count matrix
+prep_data/prepare_query
 
-Input file requires:
+- Software needed
+# please install https://github.com/AllenWLynch/QuickATAC
+# gunzip
 
-- "bedfile" reference peaks bed file (dropbox link) 
+- input files
 
-- "spikein" a spikein file to retain all reference peaks as features in the final matrix (dropbox)
+# reference peak file peaks.bed
 
-- chrom_size_file hg38 chromsome size file, provided by QuickATAC
+# Frag_path path to fragments.tsv.gz
 
-- sample_directory: directory where sample fragment file and cell barcodes are stored
+# Barcode_path path to barcodes.tsv
+
+# hg38.chrom.sizes.txt within the reference buidling folder hg38.chrom.sizes.txt
 
 
-Three steps:
+- command to process query data
+::
 
-1. quick filter-barcodes function filters fragment file by barcodes
+    bash prepare_query.sh
 
-2. concatenate fragment file with spike-in pseudo-fragment file, and sort the concatenated cell_filtered_fragments. This step retains all reference peaks as features in the final output
+This command will prepare the query data based on the following steps:
 
-3. agg-countmatrix function creates matrix.mtx, features.tsv and barcodes.tsc files for the query sample
 
-Output file includes:
+# 1. prepare peak-cell matrix file
 
-- matrix.mtx stores matrix
+# 2. construct peak-cell matrix for reference atlas using QuickATAC
 
-- features.tsv stores reference peaks
+# 3. prepare reference atlas h5ad file for scATAnno
 
-- barcodes.tsv stores cell barcodes
 
-```
 
-#!/bin/bash
-
-bedfile=BCC_Atlas_merged_peak.narrowPeak.filter.sorted.bed
-
-spikein=spikein_fragment_BCC_narrowPeak.tsv
-
-chrom_size_file=hg38.chrom.sizes.txt
-
-sample_directory=BCC_samples
-
-quick filter-barcodes input/$sample_directory/*fragments.tsv.gz --barcodes input/$sample_directory/*barcodes.tsv > input/$sample_directory/cell_filtered_fragments.tmp.tsv &&
-
-cat input/$spikein input/$sample_directory/cell_filtered_fragments.tmp.tsv > input/$sample_directory/concat_fake_true_fragments.tmp.tsv &&
-
-sort -k 1,1 -k2,2n input/$sample_directory/concat_fake_true_fragments.tmp.tsv > input/$sample_directory/concat_fake_true_fragments.sorted.tsv &&
-
-echo "finish sorting concated spike-in fragments" && mkdir counts/$sample_directory/ &&
-
-quick agg-countmatrix input/$sample_directory/concat_fake_true_fragments.sorted.tsv -g input/$chrom_size_file -p input/$bedfile --max-fragsize 999999999 -o counts/$sample_directory/ &&
-echo "Done!"
-
-```
