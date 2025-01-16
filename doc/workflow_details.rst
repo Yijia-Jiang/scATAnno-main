@@ -6,13 +6,16 @@ How to Build a Reference
 
 prep_data/scATAnno-reference-building-example
 
+- Software needed
+# please install https://github.com/AllenWLynch/QuickATAC
+# MACS2 if need to call peaks
+# gunzip
+
 - input files
 
-build_reference.sh
-
-generate_atlas.py  
-
-prepare_files.py
+# Frag_path path to fragments.tsv.gz
+# Barcode_path path to barcodes.tsv
+# hg38.chrom.sizes.txt within the reference buidling folder hg38.chrom.sizes.txt
 
 - command to create the reference
 ::
@@ -20,6 +23,7 @@ prepare_files.py
     bash build_reference.sh
 
 This command will build reference based on the following steps:
+
 # 1. call peaks using MACS2 from fragment file
 
 # 2. prepare peak-cell matrix file
