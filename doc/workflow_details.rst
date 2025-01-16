@@ -2,7 +2,7 @@ Prepare Reference Atlas
 ===========================
 How to Build a Reference
 ---------------------------------
-- dirctory of the code
+- Code used for reference budiling
 
 prep_data/scATAnno-reference-building-example
 
@@ -19,14 +19,26 @@ prepare_files.py
 
     bash build_reference.sh
 
-- succssful message
+This command will build reference based on the following steps:
+# 1. call peaks using MACS2 from fragment file
+
+# 2. prepare peak-cell matrix file
+
+# 3. construct peak-cell matrix for reference atlas using QuickATAC
+
+# 4. prepare reference atlas h5ad file for scATAnno
+
+# 5. (optional) Create reference low-dimensional spectral embedding for futher use 
+
+
+- following is a succssful message
 ::
     INFO  @ Sun, 05 Jan 2025 02:47:40: 
-    # Command line: callpeak -f BEDPE -g hs --nomodel --extsize 50 --keep-dup all -q 0.1 -t /mnt/cfce-rcsm/projects/nibr_pbmc/yi-zhang/nibr_multiome/data/sample4/atac_fragments.tsv.gz -n macs2
+    # Command line: callpeak -f BEDPE -g hs --nomodel --extsize 50 --keep-dup all -q 0.1 -t /mnt/atac_fragments.tsv.gz -n macs2
     # ARGUMENTS LIST:
     # name = macs2
     # format = BEDPE
-    # ChIP-seq file = ['/mnt/cfce-rcsm/projects/nibr_pbmc/yi-zhang/nibr_multiome/data/sample4/atac_fragments.tsv.gz']
+    # ChIP-seq file = ['/mnt/atac_fragments.tsv.gz']
     # control file = None
     # effective genome size = 2.70e+09
     # band width = 300
