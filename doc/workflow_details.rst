@@ -14,8 +14,11 @@ prep_data/scATAnno-reference-building-example
 - input files
 
 # Frag_path path to fragments.tsv.gz
+
 # Barcode_path path to barcodes.tsv
+
 # hg38.chrom.sizes.txt within the reference buidling folder hg38.chrom.sizes.txt
+
 
 - command to create the reference
 ::
