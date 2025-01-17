@@ -11,7 +11,7 @@ prep_data/scATAnno-reference-building-example
 # MACS2 if need to call peaks
 # gunzip
 
-- input files
+- load input files in build_reference.sh
 
 # Frag_path path to fragments.tsv.gz
 
