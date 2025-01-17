@@ -7,17 +7,17 @@ How to Build a Reference
 prep_data/scATAnno-reference-building-example
 
 - Software needed
-# please install https://github.com/AllenWLynch/QuickATAC
-# MACS2 if need to call peaks
-# gunzip
+   - please install https://github.com/AllenWLynch/QuickATAC
+   - MACS2 if need to call peaks
+   - gunzip
 
 - load input files in build_reference.sh
 
-# Frag_path path to fragments.tsv.gz
+   - Frag_path path to fragments.tsv.gz
 
-# Barcode_path path to barcodes.tsv
+   - Barcode_path path to barcodes.tsv
 
-# hg38.chrom.sizes.txt within the reference buidling folder hg38.chrom.sizes.txt
+   - hg38.chrom.sizes.txt within the reference buidling folder hg38.chrom.sizes.txt
 
 
 - command to create the reference
@@ -27,15 +27,15 @@ prep_data/scATAnno-reference-building-example
 
 This command will build reference based on the following steps:
 
-# 1. call peaks using MACS2 from fragment file
+   - 1. call peaks using MACS2 from fragment file
 
-# 2. prepare peak-cell matrix file
+   - 2. prepare peak-cell matrix file
 
-# 3. construct peak-cell matrix for reference atlas using QuickATAC
+   - 3. construct peak-cell matrix for reference atlas using QuickATAC
 
-# 4. prepare reference atlas h5ad file for scATAnno
+   - 4. prepare reference atlas h5ad file for scATAnno
 
-# 5. (optional) Create reference low-dimensional spectral embedding for futher use 
+   - 5. (optional) Create reference low-dimensional spectral embedding for futher use 
 
 
    
