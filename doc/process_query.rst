@@ -20,7 +20,7 @@ prep_data/prepare_query
 
    - Barcode_path path to barcodes.tsv
 
-   - hg38.chrom.sizes.txt within the reference buidling folder hg38.chrom.sizes.txt
+   - hg38.chrom.sizes.txt within the prepare_query folder
 
 
 - command to process query data
