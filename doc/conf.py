@@ -18,7 +18,7 @@
 # -- Project information -----------------------------------------------------
 
 project = 'scATAnno: Automated Cell Type Annotation for single-cell ATAC-seq Data'
-copyright = '2023, CFCE-DFCI'
+copyright = 'CFCE-DFCI'
 author = 'Yijia Jiang'
 
 
