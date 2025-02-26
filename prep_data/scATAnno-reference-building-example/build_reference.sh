@@ -4,7 +4,7 @@ output_path=/home/yj976/scATAnno_benchmark/reference_build
 frag_path=/mnt/cfce-rcsm/projects/nibr_pbmc/yi-zhang/nibr_multiome/data/sample4/atac_fragments.tsv.gz
 barcode_path=/mnt/cfce-rcsm/projects/nibr_pbmc/yi-zhang/nibr_multiome/data/sample4/filtered_feature_bc_matrix/barcodes.tsv
 hg38chromsize=/mnt/cfce-rcsm/projects/nibr_pbmc/scATAC/ref_peak_count_matrix/counts/peak-count-matrix-macs2/hg38.chrom.sizes.txt
-refcelllabel=reference_cell_label.csv
+refcelllabel=/mnt/cfce-rcsm/projects/nibr_pbmc/yi-zhang/nibr_multiome/data/sample4/filtered_feature_bc_matrix/ref_true_lable.csv
 
 # 1. call peaks using MACS2 from fragment file
 /home/cfceConda/miniconda3/envs/chips_py2/bin/macs2 callpeak \
