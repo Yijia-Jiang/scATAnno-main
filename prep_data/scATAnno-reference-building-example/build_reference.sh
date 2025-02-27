@@ -1,5 +1,5 @@
 
-
+#replace these parameters
 output_path=/home/yj976/scATAnno_benchmark/reference_build
 frag_path=/mnt/cfce-rcsm/projects/nibr_pbmc/yi-zhang/nibr_multiome/data/sample4/atac_fragments.tsv.gz
 barcode_path=/mnt/cfce-rcsm/projects/nibr_pbmc/yi-zhang/nibr_multiome/data/sample4/filtered_feature_bc_matrix/barcodes.tsv
@@ -48,5 +48,5 @@ python generate_atlas.py --countMatrixLocation $output_path --celllabel $refcell
 # 5. save reference projections (optional) 
 python generate_reference_embedding.py --countMatrixLocation $output_path
 
-# 6. remmove batch effect for reference from two data set (optional when neeed to remove batch effect in reference dataset) 
+# 6. remove batch effect for reference from two data set (optional when need to remove batch effect in reference dataset) 
 python generate_reference_batch.py --countMatrixLocation1 refdata1.h5ad --countMatrixLocation2 refdata2.h5ad --outputreference batch_removed_reference.h5ad
