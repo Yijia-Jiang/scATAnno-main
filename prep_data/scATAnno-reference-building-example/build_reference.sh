@@ -49,4 +49,7 @@ python generate_atlas.py --countMatrixLocation $output_path --celllabel $refcell
 python generate_reference_embedding.py --countMatrixLocation $output_path
 
 # 6. remove batch effect for reference from two data set (optional when need to remove batch effect in reference dataset) 
-python generate_reference_batch.py --countMatrixLocation1 refdata1.h5ad --countMatrixLocation2 refdata2.h5ad --outputreference batch_removed_reference.h5ad
+refdata1=/home/yj976/scATAnno_benchmark/reference_combine/combine/counts/Healthy_Human_labled_split.h5ad
+refdata2=/home/yj976/scATAnno_benchmark/reference_combine/combine/counts/TIL_labled_split.h5ad
+batch_removed_reference=/home/yj976/scATAnno_benchmark/reference_combine/combine/counts/combined_test.h5ad
+python generate_reference_batch.py --countMatrixLocation1 $refdata1 --countMatrixLocation2 $refdata2 --outputreference $batch_removed_reference
